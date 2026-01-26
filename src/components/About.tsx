@@ -27,7 +27,7 @@ export default function About() {
                 </div>
                 <div className={styles.imageWrapper}>
                     <Image
-                        src="/about-figma.png"
+                        src="/about.png"
                         alt="О нас"
                         width={600}
                         height={600}
