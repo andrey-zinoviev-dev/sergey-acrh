@@ -35,6 +35,24 @@ a {
   text-decoration: none;
 }
 
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-tenor-sans), sans-serif;
+}
+
+p {
+  font-family: var(--font-onest), sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666666;
+  margin: 0;
+  max-width: 540px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -1,0 +1,146 @@
+.projectItem {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* gap: 24px; */
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+    box-sizing: border-box;
+    padding: 12px 0;
+    border-bottom: 1px solid #666666;
+}
+
+/* .link:hover {
+    opacity: 0.8;
+} */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* gap: 12px; */
+    /* padding: 24px 0; */
+}
+
+.titleBlock {
+    display: grid;
+    width: fit-content;
+    gap: 12px;
+}
+
+.category {
+    /* font-family: var(--font-tenor-sans), sans-serif; */
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+    background-color: #F0F0F0;
+    padding: 5px 10px;
+    border-radius: 24px;
+    width: fit-content;
+}
+
+.title {
+    font-family: var(--font-tenor-sans), sans-serif;
+    /* font-size: 32px; */
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: #000000;
+}
+
+.year {
+    font-family: var(--font-onest), sans-serif;
+    /* font-size: 18px; */
+    color: #666666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.metadata {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    width: fit-content;
+    /* margin-top: 8px; */
+}
+
+.metadataColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.metadataLabel {
+    font-family: var(--font-onest), sans-serif;
+    font-size: 14px;
+    color: #666666;
+}
+
+.metadataValue {
+    font-family: var(--font-onest), sans-serif;
+    font-size: 16px;
+    color: #000000;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .link {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .imageWrapper {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 16px 0;
+        gap: 12px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .metadata {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .year {
+        font-size: 16px;
+    }
+
+    .metadata {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .imageWrapper {
+        border-radius: 4px;
+    }
+}
