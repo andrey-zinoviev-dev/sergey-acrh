@@ -1,7 +1,7 @@
 .projects {
     width: 100%;
-    padding: 0 0 48px 0;
-    background-color: #ffffff;
+    padding: 0 0 96px 0;
+    /* background-color: #ffffff; */
     /* background-color: #000000; */
 }
 
@@ -29,7 +29,8 @@
     font-family: var(--font-onest), sans-serif;
     font-size: 18px;
     line-height: 1.8;
-    color: #666666;
+    color: black;
+    /* color: #666666; */
     /* color: #333333; */
     /* margin: 0 0 60px 0; */
     max-width: 800px;
@@ -40,7 +41,8 @@
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
     /* gap: 24px; */
     /* display: flex;
     flex-direction: column; */

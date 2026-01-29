@@ -1,6 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Project.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface ProjectProps {
     href: string;
@@ -28,32 +30,25 @@ export default function Project({
     imageAlt,
 }: ProjectProps) {
     return (
-        <li className={styles.projectItem}>
+        <li key={title} className={styles.projectItem}>
             <Link href={href} className={styles.link}>
-                <div className={styles.content}>
-                    <div className={styles.titleBlock}>
-                        <div className={styles.category}>{category}</div>
-                        <h3 className={styles.title}>{title}</h3>
-                        <span className={styles.year}>{year}</span>
-                    </div>
-                    <div className={styles.metadata}>
-                        <div className={styles.metadataColumn}>
-                            <span className={styles.metadataLabel}>{industry}</span>
-                            <span className={styles.metadataValue}>{territories}</span>
-                        </div>
-                        <div className={styles.metadataColumn}>
-                            <span className={styles.metadataLabel}>{location}</span>
-                            <span className={styles.metadataValue}>{locationValue}</span>
-                        </div>
-                    </div>
+                <div className={styles.projectInfo}>
+                    <span>{year} /</span>
+                    <span>{locationValue} /</span>
+                    <span> {category}</span>
+                    {/* <h3>{title}</h3> */}
                 </div>
-                <Image
-                    src={imageSrc}
-                    alt={imageAlt}
-                    width={800}
-                    height={600}
-                    className={styles.image}
-                />
+                <div className={styles.titleBlock}>
+                    <h3 className={styles.title}>{title} <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight} /></h3>
+                    <Image
+                        src={imageSrc}
+                        alt={imageAlt}
+                        width={800}
+                        height={600}
+                        className={styles.image}
+                    />
+                </div>
+
             </Link>
         </li>
     );

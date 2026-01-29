@@ -25,14 +25,14 @@ export default function Projects() {
                     <Project
                         href="/projects/2"
                         category="Градостроительство"
-                        title="Стадион Луи II"
-                        year="2025"
+                        title="Ангар S7"
+                        year="2024"
                         industry="Инудстрия"
                         territories="Территории"
                         location="Локация"
-                        locationValue="Монако"
+                        locationValue="Москва"
                         imageSrc="/project-1.png"
-                        imageAlt="Стадион Луи II"
+                        imageAlt="Ангар S7"
                     />
                 </ul>
                 {/* <div className={styles.projectItem}>
