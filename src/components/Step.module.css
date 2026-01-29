@@ -46,3 +46,13 @@
     /* font-size: 16px;
     line-height: 1.6; */
 }
+
+@media (max-width: 480px) {
+    .stepNumber, .stepTitle {
+        font-size: 22px;
+    }
+
+    .stepDescription, .stepResult {
+        font-size: 16px;
+    }
+}

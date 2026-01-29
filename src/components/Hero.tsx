@@ -17,16 +17,17 @@ export default function Hero() {
                 </div>
 
                 <div className={styles.heroImage}>
-                    <Image
-                        src="/hero-image.png"
-                        alt="Современная архитектура"
-                        width={1200}
-                        height={800}
-                        className={styles.image}
-                        priority
-                    />
+                    
                 </div>
             </div>
+            <Image
+                src="/hero-image.png"
+                alt="Современная архитектура"
+                width={1200}
+                height={800}
+                className={styles.image}
+                priority
+            />
         </section>
     );
 }

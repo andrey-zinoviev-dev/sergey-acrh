@@ -109,6 +109,12 @@ a.secondary {
   }
 }
 
+@media (max-width: 480px) {
+  .main {
+    padding: 0;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .logo {
     filter: invert();

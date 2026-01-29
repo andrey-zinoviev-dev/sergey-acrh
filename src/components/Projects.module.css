@@ -110,12 +110,12 @@
 
 @media (max-width: 480px) {
     .projects {
-        padding: 60px 0;
+        padding: 48px 0 0 0;
     }
 
     .container {
-        padding: 0 16px;
-        gap: 24px;
+        padding: 0 12px;
+        gap: 48px;
     }
 
     .label {
@@ -125,5 +125,9 @@
 
     .imageWrapper {
         border-radius: 4px;
+    }
+
+    .projectsList {
+        grid-template-columns: 1fr;
     }
 }

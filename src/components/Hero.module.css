@@ -147,10 +147,11 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: 80px 0 40px;
+    padding: 24px 0;
   }
 
   .container {
+    padding: 0 12px;
     gap: 32px;
   }
 
