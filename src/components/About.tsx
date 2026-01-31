@@ -6,10 +6,11 @@ export default function About() {
         <section className={styles.about}>
             <div className={styles.container}>
                 <div className={styles.content}>
-                    <h2 className={styles.heading}>&quot;АРХИТЕКТУРА – ЭТО ЖИВОЙ ПРОЦЕСС. ДЛЯ МЕНЯ ОН НАЧИНАЕТСЯ С ОБРАЗА ЗДАНИЯ КАК ЦЕЛОСТНОГО РЕШЕНИЯ.&quot;</h2>
+                    <h2 className={styles.heading}>&quot;АРХИТЕКТУРА – ЭТО ЖИВОЙ ПРОЦЕСС.&quot;</h2>
                     <div className={styles.textBlock}>
                         <p className={[styles.paragraph, styles.author].join(' ')}><span>Сергей Ильич Пономаренко</span> <span>Магистр МАРХИ, член Союза Архитекторов.</span></p>
-                        <p className={styles.paragraph}>Я — частный архитектор. Специализируюсь на создании объектов с высокой художественной ценностью: от реставрации наследия до новых зданий с уникальным характером. Мной движет стремление сохранить чистоту идеи на всех этапах и создать архитектуру, которая имеет значение.</p>
+                        <p className={styles.paragraph}>Я — частный архитектор. Специализируюсь на создании объектов с высокой художественной ценностью: от реставрации наследия до новых зданий с уникальным характером.</p>
+                        <p className={styles.paragraph}>Мной движет стремление сохранить чистоту идеи на всех этапах и создать архитектуру, которая имеет значение.</p>
                         {/* <p className={styles.paragraph}>
                             Магистр-выпускник МАРХИ, член Союза Архитекторов.
                         </p>

@@ -1,4 +1,6 @@
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import styles from './Contact.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Contact() {
     return (
@@ -14,7 +16,7 @@ export default function Contact() {
                     <span>Архитектор Сергей Пономаренко</span>
                     <div className={styles.contactItem}>
                         <span className={styles.label}>Email</span>
-                        <a href="mailto:contact@example.com" className={styles.value}>ilichwork@hotmail.com</a>
+                        <a href="mailto:contact@example.com" className={styles.value}>ilichwork@hotmail.com <FontAwesomeIcon icon={faArrowRight} /></a>
                     </div>
                     <div className={styles.contactItem}>
                         <span className={styles.label}>Телефон</span>

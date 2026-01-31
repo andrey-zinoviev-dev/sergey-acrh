@@ -1,26 +1,41 @@
+
 .step {
     box-sizing: border-box;
-    padding: 12px 12px;
+    padding: 12px 0;
     border: none;
     border-top: 1px solid black;
     display: grid;
+    grid-template-columns: 30px 1fr;
     gap: 24px;
     text-align: left;
     width: 100%;
     background-color: transparent;
 }
 
-.stepHeaderWrapper {
+.stepFirst {
+    border-top: none;
+}
+
+.stepContentWrapper {
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    flex-direction: column;
     gap: 12px;
+    align-items: flex-start;
+}
+
+.stepHeaderWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .stepContent {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    max-width: 420px;
 }
 
 /* .step:last-of-type {
@@ -47,12 +62,30 @@
     line-height: 1.6; */
 }
 
-@media (max-width: 480px) {
-    .stepNumber, .stepTitle {
-        font-size: 22px;
+.stepIcon {
+    width: 25px;
+    height: 25px;
+    color: black;
+    transition: rotate 0.3s ease;
+}
+
+.stepIconOpen {
+    rotate: 90deg;
+}
+
+@media screen and (max-width: 1023px) {
+    .stepNumber,
+    .stepTitle {
+        font-size: 20px;
     }
 
-    .stepDescription, .stepResult {
-        font-size: 16px;
+    .stepIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .stepDescription,
+    .stepResult {
+        font-size: 14px;
     }
 }

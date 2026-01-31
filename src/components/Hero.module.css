@@ -39,6 +39,7 @@
 .description {
     max-width: 720px;
     font-size: 20px;
+    color: black;
 }
 
 .heroImage {
@@ -53,6 +54,7 @@
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 2.39 / 1;
 }
 
 .ctaButton {
@@ -151,7 +153,7 @@
   }
 
   .container {
-    padding: 0 12px;
+    padding: 0 24px;
     gap: 32px;
   }
 

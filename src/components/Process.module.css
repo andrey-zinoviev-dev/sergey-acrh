@@ -32,15 +32,6 @@
     /* gap: 98px; */
 }
 
-.descriptionWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-    max-width: 540px;
-    /* max-width: 480px; */
-}
-
 .heading {
     font-family: var(--font-tenor-sans), sans-serif;
     font-size: 48px;
@@ -49,44 +40,58 @@
     letter-spacing: -0.02em;
     margin: 0;
     color: #000000;
-    translate: 0 -10px;
+    /* text-align: ; */
+    /* translate: 10% 0; */
+    /* translate: 0 -10px; */
+}
+
+.descriptionWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 480px;
+    /* max-width: 480px; */
 }
 
 .description {
     color: black;
     font-family: var(--font-onest), sans-serif;
-    max-width: 480px;
+    max-width: 420px;
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 1.5;
+    /* translate:    10% 0; */
+    max-width: 420px;
+    text-align: justify;
 }
 
-.content {
+/* .content {
     display: grid;
     grid-template-columns: 0.75fr 1fr;
-    /* gap: 24px; */
     width: 100%;
     gap: 96px;
-    /* gap: 16px; */
+} */
+
+.contentWrapper {
+    display: grid;
+    gap: 96px;
 }
 
 .steps {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
+    /* background-color: blue; */
     /* display: flex;
     flex-direction: column;
     gap: 12px; */
     /* gap: 24px; */
 }
 
-.step {
-    /* background-color: #F0F0F0;
-    border-radius: 12px;
-    padding: 8px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px; */
-}
+/* .stepsList > {
+    background-color: red;
+    border-top: none;
+} */
 
 .stepTitle {
     color: black;
@@ -124,7 +129,7 @@
     object-fit: cover;
     /* display: block; */
     max-width: 380px;
-    max-height: 380px;
+    /* max-height: 380px; */
     margin: 0 auto;
     /* border-radius: 8px; */
 }
@@ -137,8 +142,16 @@
         padding: 0 24px 40px;
     }
 
-    .imageWrapper {
-        order: -1;
+    .headingWrapper {
+        gap: 48px;
+    }
+
+    .contentWrapper {
+        gap: 48px;
+    }
+
+    .image {
+        max-width: 300px;
     }
 
     .process {
@@ -173,7 +186,7 @@
     }
 
     .container {
-        padding: 0 12px;
+        padding: 0 24px;
         gap: 16px;
     }
 
@@ -182,6 +195,23 @@
         gap: 24px;
         /* align-items: flex-start;
         gap: 24px; */
+    }
+    .heading {
+        font-size: 28px;
+    }
+
+    .descriptionWrapper {
+        gap: 24px;
+    }
+
+    .contentWrapper {
+        gap: 24px;
+        translate: 2.5% 0;
+        max-width: 320px;
+    }
+
+    .description {
+        font-size: 14px;
     }
 
     .step {
