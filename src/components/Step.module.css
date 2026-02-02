@@ -89,3 +89,19 @@
         font-size: 14px;
     }
 }
+
+@media screen and (max-width: 424px) {
+    .step {
+        gap: 4px;
+        grid-template-columns: 24px 1fr;
+    }
+    .stepNumber,
+    .stepTitle {
+        font-size: 18px;
+        font-weight: 500;
+    }
+    /* .stepDescription,
+    .stepResult {
+        font-size: 14px;
+    } */
+}

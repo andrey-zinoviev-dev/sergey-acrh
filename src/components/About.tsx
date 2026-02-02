@@ -1,12 +1,14 @@
 import styles from './About.module.css';
 import Image from 'next/image';
+import Headline from './Headline';
+import Container from './Container';
 
 export default function About() {
     return (
         <section className={styles.about}>
-            <div className={styles.container}>
+            <Container className={styles.container}>
                 <div className={styles.content}>
-                    <h2 className={styles.heading}>&quot;АРХИТЕКТУРА – ЭТО ЖИВОЙ ПРОЦЕСС.&quot;</h2>
+                    <Headline className={styles.aboutHeading}>&quot;АРХИТЕКТУРА – ЭТО ЖИВОЙ ПРОЦЕСС.&quot;</Headline>
                     <div className={styles.textBlock}>
                         <p className={[styles.paragraph, styles.author].join(' ')}><span>Сергей Ильич Пономаренко</span> <span>Магистр МАРХИ, член Союза Архитекторов.</span></p>
                         <p className={styles.paragraph}>Я — частный архитектор. Специализируюсь на создании объектов с высокой художественной ценностью: от реставрации наследия до новых зданий с уникальным характером.</p>
@@ -35,7 +37,7 @@ export default function About() {
                     height={600}
                     className={styles.image}
                 />
-            </div>
+            </Container>
         </section>
     );
 }

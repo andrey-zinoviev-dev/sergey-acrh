@@ -3,10 +3,11 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: #f0f0f0;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 12px 0;
 }
 
 .container {
@@ -30,25 +31,30 @@
 
 .ctaButton {
   font-family: var(--font-onest), sans-serif;
-  padding: 12px 24px;
+  padding: 12px 12px;
   font-size: 14px;
   font-weight: 500;
   color: #000000;
-  background-color: black;
-  color: white;
-  border: none;
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+  /* background-color: black; */
+  /* color: white; */
+  /* border: none; */
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); */
   text-transform: capitalize;
 }
 
 .ctaButton:hover {
-  background-color: #f2f2f2;
-  color: black;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: black;
+  color: white;
+  /* background-color: #f2f2f2; */
+  /* color: black; */
+  /* transform: translateY(-2px); */
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
 }
 
 .ctaButton:active {
@@ -81,7 +87,7 @@
   }
 
   .ctaButton {
-    padding: 8px 16px;
+    padding: 12px;
     font-size: 12px;
   }
 }

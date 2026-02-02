@@ -1,12 +1,22 @@
 import styles from './Projects.module.css';
 import Project from './Project';
+import Headline from './Headline';
+import Link from 'next/link';
+import ArrowIcon from './ArrowIcon';
+import Container from './Container';
 
 export default function Projects() {
     return (
         <section className={styles.projects}>
-            <div className={styles.container}>
+            <Container className={styles.container}>
                 <div className={styles.headingWrapper}>
-                    <h2 className={styles.heading}>Мои проекты</h2>
+                    <div className={styles.headingBlock}>
+                        <Headline>Мои проекты</Headline>
+                        <Link className={styles.link} href="/projects">
+                            <span>Посмотреть все</span>
+                            <ArrowIcon />
+                        </Link>
+                    </div>
                     <div className={styles.descriptionWrapper}>
                         <p className={styles.description}>
                             В моей практике как проектирование, так и архитектурное консультирование.
@@ -15,7 +25,7 @@ export default function Projects() {
                             Все мои проекты разного масштаба: от частных домов и общественных зданий до храмов со сложными функциональными и техническими требованиями, как в новом строительстве, так и в существующей застройке — реконструкции и реставрации.
                         </p>
                     </div>
-                    
+
                 </div>
 
                 <ul className={styles.projectsList}>
@@ -68,7 +78,7 @@ export default function Projects() {
                         />
                     </div>
                 </div> */}
-            </div>
+            </Container>
         </section>
     );
 }

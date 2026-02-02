@@ -1,14 +1,16 @@
 import styles from './Process.module.css';
 import Image from 'next/image';
 import Step from './Step';
+import Headline from './Headline';
+import Container from './Container';
 
 export default function Process() {
     return (
         <section className={styles.process}>
-            <div className={styles.container}>
+            <Container className={styles.container}>
                 <div className={styles.headingWrapper}>
                     <div className={styles.descriptionWrapper}>
-                        <h2 className={styles.heading}>Как я работаю</h2>
+                        <Headline>Как я работаю</Headline>
                         <div className={styles.contentWrapper}>
                             <p className={styles.description}>Мы с вами определяем ключевые задачи и проводим комплексное исследование всех исходных условий: оцениваем существующие ограничения и ищем возможности для их развития.</p>
                             <ul className={styles.stepsList}>
@@ -84,7 +86,7 @@ export default function Process() {
                     </div>
 
                 </div>
-            </div>
+            </Container>
         </section>
     );
 }

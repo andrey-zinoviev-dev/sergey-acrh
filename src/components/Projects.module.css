@@ -21,6 +21,14 @@
     align-items: center;
 }
 
+.headingBlock {
+    display: grid;
+    gap: 4px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+}
+
 .heading {
     font-family: var(--font-tenor-sans), sans-serif;
     font-size: 48px;
@@ -29,6 +37,16 @@
     letter-spacing: -0.02em;
     /* margin: 0 0 24px 0; */
     color: #000000;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
+    font-weight: 400;
 }
 
 .descriptionWrapper {
@@ -155,13 +173,27 @@
         gap: 24px;
     }
 
+    .headingBlock {
+        gap: 4px;
+    }
+
     .heading {
         font-size: 28px;
     }
 
+    .link {
+        font-size: 16px;
+    }
+
     .descriptionWrapper {
-        translate: 5% 0;
+        translate: 0 0;
         max-width: 320px;
+    }
+
+    .description {
+        font-size: 16px;
+        text-align: left;
+    
     }
 
     .label {
@@ -175,14 +207,17 @@
 
     .projectsList {
         grid-template-columns: 1fr;
+        /* max-width: 320px; */
+        margin: 0 auto;
     }
 }
 
-@media (max-width: 479px) {
+/* @media (max-width: 479px) {
     .descriptionWrapper {
         translate: 2.5% 0;
     }
     .description {
-        font-size: 14px;
+        font-size: 16px;
+
     }
-}
+} */

@@ -55,6 +55,7 @@
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   aspect-ratio: 2.39 / 1;
+  max-height: 390px;
 }
 
 .ctaButton {

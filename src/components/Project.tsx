@@ -1,8 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Project.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import ArrowIcon from './ArrowIcon';
 
 interface ProjectProps {
     href: string;
@@ -39,7 +38,7 @@ export default function Project({
                     {/* <h3>{title}</h3> */}
                 </div>
                 <div className={styles.titleBlock}>
-                    <h3 className={styles.title}>{title} <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight} /></h3>
+                    <h3 className={styles.title}>{title} <ArrowIcon className={styles.arrowIcon} /></h3>
                     <Image
                         src={imageSrc}
                         alt={imageAlt}

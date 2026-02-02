@@ -1,10 +1,11 @@
 import styles from './Hero.module.css';
 import Image from 'next/image';
+import Container from './Container';
 
 export default function Hero() {
     return (
         <section className={styles.hero}>
-            <div className={styles.container}>
+            <Container className={styles.container}>
                 <div className={styles.textContent}>
                     <h1 className={styles.heading}>
                         От замысла — к концепции.
@@ -17,9 +18,9 @@ export default function Hero() {
                 </div>
 
                 <div className={styles.heroImage}>
-                    
+
                 </div>
-            </div>
+            </Container>
             <Image
                 src="/hero-image.png"
                 alt="Современная архитектура"
