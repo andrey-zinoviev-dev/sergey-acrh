@@ -11,7 +11,7 @@ export default function CTAButton({ className, ...props }: CTAButtonProps) {
       // type="button"
       className={[styles.ctaButton, className].filter(Boolean).join(' ')}
       onClick={() => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }}
       {...props}
     >
