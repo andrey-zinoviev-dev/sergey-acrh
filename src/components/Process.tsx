@@ -45,47 +45,6 @@ export default function Process() {
                 </div>
                 {/* <p>В основе моей работы —  понимание того, как здание будет использоваться, восприниматься и существовать в среде, для которой создаётся. Для меня важно, чтобы исходный замысел проходил скозь все этапы проекта</p> */}
 
-                <div className={styles.content}>
-                    <div className={styles.steps}>
-
-                        {/* <div className={styles.step}>
-                            <span>01</span>
-                            <h3 className={styles.stepTitle}>Предпроектное исследование</h3>
-                            <p className={styles.stepDescription}>
-                                Анализ участка, определение бюджета, рабочих ограничений, нормативных требований
-                            </p>
-                        </div>
-                        <div className={styles.step}>
-                            <span>02</span>
-                            <h3 className={styles.stepTitle}>Концепция</h3>
-                            <p className={styles.stepDescription}>
-                                Разработка архитектурных решений, подбор материалов, технологий и конструкций
-                            </p>
-                        </div>
-                        <div className={styles.step}>
-                            <span>03</span>
-                            <h3 className={styles.stepTitle}>Рабочая документация</h3>
-                            <p className={styles.stepDescription}>
-                                Подготовка комплекта проектных чертежей. Проверка разделов проекта на их соответствия исходной задаче
-                            </p>
-                        </div>
-                        <div className={styles.step}>
-                            <span>04</span>
-                            <h3 className={styles.stepTitle}>Передача проекта</h3>
-                            <p className={styles.stepDescription}>
-                                Передача полного комплекта документации и консультирование по вопросам реализации проекта
-                            </p>
-                        </div>
-                        <div className={styles.step}>
-                            <span>05</span>
-                            <h3 className={styles.stepTitle}>Авторский надзор</h3>
-                            <p className={styles.stepDescription}>
-                                Контроль соответствия выполняемых строительных работ проектной документации
-                            </p>
-                        </div> */}
-                    </div>
-
-                </div>
             </Container>
         </section>
     );
