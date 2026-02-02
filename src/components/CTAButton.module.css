@@ -13,13 +13,20 @@
   text-transform: capitalize;
 }
 
-.ctaButton:hover {
+/* .ctaButton:hover {
   background-color: black;
   color: white;
-}
+} */
 
-.ctaButton:active {
+/* .ctaButton:active {
   transform: translateY(0);
+} */
+
+@media (hover: hover) {
+  .ctaButton:hover {
+    background-color: black;
+    color: white;
+  }
 }
 
 @media (max-width: 768px) {
