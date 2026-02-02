@@ -6,7 +6,7 @@ import Container from './Container';
 
 export default function Contact() {
     return (
-        <section className={styles.contact}>
+        <section id="contact" className={styles.contact}>
             <Container className={styles.container}>
                 <Headline>От обсуждения — к воплощению</Headline>
                 <div className={styles.contentWrapper}>

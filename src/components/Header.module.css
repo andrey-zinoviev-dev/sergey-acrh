@@ -29,38 +29,6 @@
   cursor: pointer;
 }
 
-.ctaButton {
-  font-family: var(--font-onest), sans-serif;
-  padding: 12px 12px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #000000;
-  background-color: transparent;
-  border: 2px solid black;
-  color: black;
-  /* background-color: black; */
-  /* color: white; */
-  /* border: none; */
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); */
-  text-transform: capitalize;
-}
-
-.ctaButton:hover {
-  background-color: black;
-  color: white;
-  /* background-color: #f2f2f2; */
-  /* color: black; */
-  /* transform: translateY(-2px); */
-  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
-}
-
-.ctaButton:active {
-  transform: translateY(0);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
@@ -69,11 +37,6 @@
 
   .logo {
     font-size: 18px;
-  }
-
-  .ctaButton {
-    padding: 10px 20px;
-    font-size: 13px;
   }
 }
 
@@ -84,10 +47,5 @@
 
   .logo {
     font-size: 16px;
-  }
-
-  .ctaButton {
-    padding: 12px;
-    font-size: 12px;
   }
 }

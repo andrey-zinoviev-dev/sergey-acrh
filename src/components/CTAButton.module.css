@@ -1,0 +1,37 @@
+.ctaButton {
+  font-family: var(--font-onest), sans-serif;
+  padding: 12px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+}
+
+.ctaButton:hover {
+  background-color: black;
+  color: white;
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .ctaButton {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ctaButton {
+    padding: 12px;
+    font-size: 12px;
+  }
+}
