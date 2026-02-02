@@ -150,7 +150,7 @@
     }
 
     .container {
-        padding: 0 16px;
+        padding: 0 24px;
         gap: 24px;
     }
 
@@ -165,10 +165,10 @@
     }
 
     .text {
-        font-size: 15px;
-    }
-
-    .value {
         font-size: 16px;
     }
+
+    /* .value {
+        font-size: 16px;
+    } */
 }
