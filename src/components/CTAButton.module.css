@@ -4,9 +4,11 @@
   font-size: 14px;
   font-weight: 500;
   color: #000000;
-  background-color: transparent;
-  border: 2px solid black;
-  color: black;
+  background-color: black;
+  color: white;
+  /* background-color: transparent; */
+  /* border: 2px solid black; */
+  /* color: black; */
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -23,10 +25,10 @@
 } */
 
 @media (hover: hover) {
-  .ctaButton:hover {
+  /* .ctaButton:hover {
     background-color: black;
     color: white;
-  }
+  } */
 }
 
 @media (max-width: 768px) {
