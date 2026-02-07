@@ -24,16 +24,14 @@ export default function Project({
     imageAlt,
 }: ProjectProps) {
     return (
-        <LinkComp href={href}>
+        <LinkComp className={styles.projectLink} href={href}>
             <div className={styles.projectInfo}>
                 <span>{year} /</span>
                 <span>{locationValue} /</span>
                 <span> {category}</span>
             </div>
             <div className={styles.titleBlock}>
-                <LinkComp href={href}>
-                    <h3 className={styles.title}>{title} <ArrowIcon className={styles.arrowIcon} /></h3>
-                </LinkComp>
+                <h3 className={styles.title}>{title} <ArrowIcon className={styles.arrowIcon} /></h3>
                 <Image
                     src={imageSrc}
                     alt={imageAlt}

@@ -1,16 +1,13 @@
 .footer {
-    background-color: #f0f0f0;
+    background-color: black;
     width: 100%;
     padding: 12px 0;
 }
 
 .container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: black;
+    color: white;
+}
+
+.text {
+    color: white;
 }

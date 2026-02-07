@@ -1,7 +1,7 @@
 .headline {
   font-family: var(--font-tenor-sans), sans-serif;
-  font-size: 48px;
-  font-weight: 500;
+  font-size: var(--headline-size, 52px);
+  font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
   margin: 0;
@@ -11,12 +11,12 @@
 
 @media (max-width: 768px) {
   .headline {
-    font-size: 36px;
+    font-size: var(--headline-size, 36px);
   }
 }
 
 @media (max-width: 480px) {
   .headline {
-    font-size: 28px;
+    font-size: var(--headline-size, 24px);
   }
 }

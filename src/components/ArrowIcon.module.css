@@ -1,3 +1,5 @@
 .arrowIcon {
   rotate: -45deg;
+  max-width: var(--arrow-icon-width, 20px);
+  width: 100%;
 }

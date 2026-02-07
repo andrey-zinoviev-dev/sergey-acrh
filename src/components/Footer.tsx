@@ -6,7 +6,7 @@ export default function Footer() {
         <footer className={styles.footer}>
             <Container className={styles.container}>
                 {/* <span>Сила в проекте</span> */}
-                <p>© 2024 Архитектор Сергей Пономаренко. Все права защищены.</p>
+                <p className={styles.text}>© 2024 Архитектор Сергей Пономаренко. Все права защищены.</p>
             </Container>
         </footer>
     )

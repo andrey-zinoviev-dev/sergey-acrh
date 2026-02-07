@@ -6,6 +6,7 @@ import Process from "@/components/Process";
 import styles from "./page.module.css";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Call from "@/components/Call";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
           <About />
           <Projects />
           <Process />
+          {/* <Call /> */}
           <Contact />
         </main>
         <Footer />
