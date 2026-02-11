@@ -1,7 +1,7 @@
 .about {
   width: 100%;
-  padding: 0 0 96px 0;
-  background-color: #fafafa;
+  padding: 96px 0;
+  background-color: #f0f0f0;
 }
 
 .container {
@@ -18,10 +18,19 @@
 .aboutContent {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 96px;
+}
+
+.aboutContentWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 128px;
 }
 
 .aboutHeading {
+  --headline-weight: 100;
+  --headline-size: 36px;
   /* max-width: 1024px;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -37,6 +46,10 @@
   /* box-sizing: border-box;
   padding: 0 0 24px 0;
   border-bottom: 1px solid #000000; */
+}
+
+.aboutHeadingSpan {
+  font-weight: 900;
 }
 
 .aboutDescriptionContent {
@@ -83,17 +96,19 @@
 }
 
 .imageWrapper {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 96px;
-  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: fit-content;
+  max-width: 280px;
 }
 
 .image {
   width: 100%;
   height: auto;
-  max-width: 240px;
+  /* max-width: 240px; */
   object-fit: cover;
 }
 
@@ -146,17 +161,26 @@
     gap: 40px;
   }
 
+  .aboutContentWrapper {
+    gap: 96px;
+    flex-direction: column;
+  }
+
   .content {
     gap: 32px;
   }
 
-  .heading {
-    font-size: 36px;
+  .aboutHeading {
+    --headline-size: 28px;
   }
 
   .paragraph {
     font-size: 16px;
     line-height: 1.7;
+  }
+
+  .imageWrapper {
+    margin: 0 auto;
   }
 }
 
@@ -170,12 +194,16 @@
     gap: 32px;
   }
 
-  .heading {
-    font-size: 28px;
+  .aboutContent {
+    gap: 48px;
   }
 
-  .aboutContent {
-    gap: 24px;
+  .aboutHeading {
+    --headline-size: 20px;
+  }
+
+  .aboutContentWrapper {
+    gap: 48px;
   }
 
   .textBlock {

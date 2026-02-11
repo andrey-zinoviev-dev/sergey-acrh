@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Container from './Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import BoldSpan from './BoldSpan';
+import Headline from './Headline';
 
 export default function Hero() {
     return (
@@ -14,12 +16,13 @@ export default function Hero() {
                     </div> */}
                     <h1 className={styles.heading}>
 
-                            АРХИТЕКТУРА - ДИЗАЙН
+                            АРХИТЕКТУРА, ДИЗАЙН, ИСКУССТВО
                     </h1>
                     <div className={styles.descriptionContent}>
                         <p className={styles.description}>
-                            Проектирование объектов с уникальными задачами и сложными творческими замыслами
+                            Проектирование объектов с <BoldSpan>уникальными задачами</BoldSpan> и <BoldSpan>сложными творческими</BoldSpan> замыслами.
                         </p>
+                        
                         <div className={styles.imageContent}>
                             <Image
                                 src="/hero-section-image.png"
@@ -30,7 +33,7 @@ export default function Hero() {
                                 priority
                             />
                             <span className={styles.arrowText}>
-                                ОБРАЗ ФОРМИРУЕТ ЗДАНИЕ
+                                СМЫСЛ. ФОРМА. РЕШЕНИЕ.
                                 <FontAwesomeIcon className={styles.arrowIcon} icon={faArrowRight} />
                             </span>
                         </div>

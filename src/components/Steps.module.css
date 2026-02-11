@@ -1,0 +1,9 @@
+.stepsList {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: var(--max-width, 100%);
+    margin: 0 auto;
+    width: 100%;
+    container-type: inline-size;
+    container-name: steps-list;
+}
