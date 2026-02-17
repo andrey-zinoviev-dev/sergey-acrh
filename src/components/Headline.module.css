@@ -2,7 +2,7 @@
   font-family: var(--font-tenor-sans), sans-serif;
   font-size: var(--headline-size, 64px);
   font-weight: var(--headline-weight, 700);
-  line-height: 1.2;
+  line-height: var(--headline-line-height, 1.2);
   letter-spacing: -0.02em;
   margin: 0;
   color: #000000;

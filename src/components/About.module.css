@@ -31,6 +31,7 @@
 .aboutHeading {
   --headline-weight: 100;
   --headline-size: 36px;
+  --headline-line-height: 1.5;
   /* max-width: 1024px;
   line-height: 1.2;
   letter-spacing: -0.02em;

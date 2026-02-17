@@ -62,8 +62,19 @@
     color: #000000;
     text-transform: uppercase;
     display: flex;
-        justify-content: space-between;
-        align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.titleText {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    min-height: 100px;
 }
 
 .arrowIcon {

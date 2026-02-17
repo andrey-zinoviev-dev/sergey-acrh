@@ -5,6 +5,8 @@ import Headline from './Headline';
 import ArrowIcon from './ArrowIcon';
 import Container from './Container';
 import LinkComp from './LinkComp';
+import { projects } from '@/app/utils/utils';
+// import { ProjectProps } from '@/app/interfaces/interfaces';
 
 export default function Projects() {
     return (
@@ -31,7 +33,12 @@ export default function Projects() {
                     </div>
 
                     <ul className={styles.projectsList}>
-                        <li className={styles.projectItem}>
+                        {projects.map((project) => (
+                            <li className={styles.projectItem} key={project.href}>
+                                <Project {...project} />
+                            </li>
+                        ))}
+                        {/* <li className={styles.projectItem}>
                             <Project
                                 href="/projects/1"
                                 category="Градостроительство"
@@ -59,14 +66,11 @@ export default function Projects() {
                                 category="Градостроительство"
                                 title="Ангар S7"
                                 year="2024"
-                                // industry="Инудстрия"
-                                // territories="Территории"
-                                // location="Локация"
                                 locationValue="Москва"
                                 imageSrc="/project-1.png"
                                 imageAlt="Ангар S7"
                             />
-                        </li>
+                        </li> */}
                     </ul>
                     <LinkComp href="/projects">
                         <span>Посмотреть все проекты</span>
