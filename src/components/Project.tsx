@@ -4,15 +4,7 @@ import Image from 'next/image';
 import ArrowIcon from './ArrowIcon';
 import LinkComp from './LinkComp';
 
-interface ProjectProps {
-    href: string;
-    category: string;
-    title: string;
-    year: string;
-    locationValue: string;
-    imageSrc: string;
-    imageAlt: string;
-}
+import { ProjectProps } from '@/app/interfaces/interfaces';
 
 export default function Project({
     href,
@@ -31,7 +23,10 @@ export default function Project({
                 <span> {category}</span>
             </div>
             <div className={styles.titleBlock}>
-                <h3 className={styles.title}>{title} <ArrowIcon className={styles.arrowIcon} /></h3>
+                <h3 className={styles.title}>
+                    <span className={styles.titleText}>{title}</span>
+                    <ArrowIcon className={styles.arrowIcon} />
+                </h3>
                 <Image
                     src={imageSrc}
                     alt={imageAlt}
