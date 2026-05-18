@@ -12,6 +12,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <Header />
+      huhuh
       <div className={styles.scrollContainer}>
         <main className={styles.main}>
           <Hero />
