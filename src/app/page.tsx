@@ -11,8 +11,8 @@ import Call from "@/components/Call";
 export default function Home() {
   return (
     <div className={styles.page}>
+      <Header />
       <div className={styles.scrollContainer}>
-        <Header />
         <main className={styles.main}>
           <Hero />
           <About />

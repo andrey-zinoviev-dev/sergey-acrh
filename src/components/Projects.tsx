@@ -15,97 +15,24 @@ export default function Projects() {
                 <div className={styles.projectsContent}>
                     <div className={styles.headingWrapper}>
                         <Headline>Мои проекты</Headline>
-
-                        {/* <div className={styles.headingBlock}>
-                        
-                    </div> */}
-                        {/* <div className={styles.descriptionWrapper}>
-                        <p className={styles.description}>
-                            В моей практике как проектирование, так и архитектурные консультации.
-                        </p>
-                        
-                    </div> */}
-
                         <p className={styles.description}>
                             Все мои проекты разного масштаба: от частных домов и общественных зданий до храмов со сложными функциональными и техническими требованиями, в том числе архитектурные консультации.
                         </p>
 
                     </div>
-
                     <ul className={styles.projectsList}>
                         {projects.map((project) => (
                             <li className={styles.projectItem} key={project.href}>
                                 <Project {...project} />
                             </li>
                         ))}
-                        {/* <li className={styles.projectItem}>
-                            <Project
-                                href="/projects/1"
-                                category="Градостроительство"
-                                title="Стадион Луи II"
-                                year="2025"
-                                locationValue="Монако"
-                                imageSrc="/project-1.png"
-                                imageAlt="Стадион Луи II"
-                            />
-                        </li>
-                        <li className={styles.projectItem}>
-                            <Project
-                                href="/projects/2"
-                                category="Градостроительство"
-                                title="Ангар S7"
-                                year="2024"
-                                locationValue="Москва"
-                                imageSrc="/project-1.png"
-                                imageAlt="Ангар S7"
-                            />
-                        </li>
-                        <li className={styles.projectItem}>
-                            <Project
-                                href="/projects/2"
-                                category="Градостроительство"
-                                title="Ангар S7"
-                                year="2024"
-                                locationValue="Москва"
-                                imageSrc="/project-1.png"
-                                imageAlt="Ангар S7"
-                            />
-                        </li> */}
+                        
                     </ul>
-                    <LinkComp href="/projects">
+                    <LinkComp href="/products">
                         <span>Посмотреть все проекты</span>
                         <ArrowIcon />
                     </LinkComp>
                 </div>
-                
-                {/* <Link className={styles.link} href="/projects">
-                    <span>Посмотреть все проекты</span>
-                    <ArrowIcon />
-                </Link> */}
-                {/* <div className={styles.projectItem}>
-                    <div className={styles.label}>Архитектура</div>
-                    <div className={styles.imageWrapper}>
-                        <Image
-                            src="/project-1.jpg"
-                            alt="Архитектурный проект"
-                            width={800}
-                            height={600}
-                            className={styles.image}
-                        />
-                    </div>
-                </div>
-                <div className={styles.projectItem}>
-                    <div className={styles.label}>Градостроительство</div>
-                    <div className={styles.imageWrapper}>
-                        <Image
-                            src="/project-2.jpg"
-                            alt="Градостроительный проект"
-                            width={800}
-                            height={600}
-                            className={styles.image}
-                        />
-                    </div>
-                </div> */}
             </Container>
         </section>
     );
