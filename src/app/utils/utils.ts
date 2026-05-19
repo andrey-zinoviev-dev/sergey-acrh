@@ -1,8 +1,35 @@
 import { ProjectPagePayload, ProjectProps } from '@/app/interfaces/interfaces';
 
+const CYRILLIC_TO_LATIN: Record<string, string> = {
+    а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'yo', ж: 'zh',
+    з: 'z', и: 'i', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o',
+    п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'h', ц: 'ts',
+    ч: 'ch', ш: 'sh', щ: 'sch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu',
+    я: 'ya',
+};
+
+/** URL slug from project title (Cyrillic → Latin, readable segments). */
+export function slugifyProjectTitle(title: string): string {
+    let result = '';
+    for (const char of title.toLowerCase()) {
+        if (CYRILLIC_TO_LATIN[char] !== undefined) {
+            result += CYRILLIC_TO_LATIN[char];
+        } else if (/[a-z0-9]/.test(char)) {
+            result += char;
+        } else {
+            result += '-';
+        }
+    }
+    return result.replace(/-+/g, '-').replace(/^-|-$/g, '');
+}
+
+function projectHref(title: string): string {
+    return `/projects/${slugifyProjectTitle(title)}`;
+}
+
 export const projects: ProjectProps[] = [
     {
-        href: '/projects/1',
+        href: projectHref('Нагатинский Затон метро'),
         category: 'Территории',
         title: 'Нагатинский Затон метро',
         year: '2017',
@@ -17,7 +44,7 @@ export const projects: ProjectProps[] = [
             'Градостроительный и ландшафтный контекст; координация с инженерией метрополитена и благоустройством. Рабочие пакеты: генеральный план участка, принципиальные разрезы набережной, ведомости покрытий и озеленения, ключевые узлы малых форм.',
     },
     {
-        href: '/projects/2',
+        href: projectHref('Стадион Луи II в Монако'),
         category: 'Реконструкция',
         title: 'Стадион Луи II в Монако',
         year: '2025',
@@ -32,7 +59,7 @@ export const projects: ProjectProps[] = [
             'Реконструкция действующего объекта; нормы UEFA/FIFA и локальные регламенты Княжества. Этапы: обследование, варианты фасадов и кровли, схемы инженерных коробов, спецификации материалов с повышенной устойчивостью к морскому климату.',
     },
     {
-        href: '/projects/3',
+        href: projectHref('Новый город: Город Света'),
         category: 'Территории',
         title: 'Новый город: Город Света',
         year: '2025',
@@ -41,7 +68,7 @@ export const projects: ProjectProps[] = [
         imageAlt: 'Светлоград',
     },
     {
-        href: '/projects/4',
+        href: projectHref('Skyborn gardens в Абу-Даби'),
         category: 'Сакральное и общественное',
         title: 'Skyborn gardens в Абу-Даби',
         year: '2023',
@@ -50,7 +77,7 @@ export const projects: ProjectProps[] = [
         imageAlt: 'Skyborn gardens, Reem Island',
     },
     {
-        href: '/projects/5',
+        href: projectHref('Ферсман Тауэр'),
         category: 'Частная архитектура',
         title: 'Ферсман Тауэр',
         year: '2021',
@@ -59,7 +86,7 @@ export const projects: ProjectProps[] = [
         imageAlt: 'Ферсман Тауэр',
     },
     {
-        href: '/projects/6',
+        href: projectHref('Центр культуры РФ в Сингапуре'),
         category: 'Сакральное и общественное',
         title: 'Центр культуры РФ в Сингапуре',
         year: '2020',
@@ -68,7 +95,7 @@ export const projects: ProjectProps[] = [
         imageAlt: 'Центр культуры РФ при Храме Успения Божьей Матери',
     },
     {
-        href: '/projects/7',
+        href: projectHref('Храм в честь пророка Илии'),
         category: 'Сакральное и общественное',
         title: 'Храм в честь пророка Илии',
         year: '2023',
@@ -77,7 +104,7 @@ export const projects: ProjectProps[] = [
         imageAlt: 'Храм святого пропрока Божьего Илии',
     },
     {
-        href: '/projects/8',
+        href: projectHref('Респис для детей "Ковчег"'),
         category: 'Сакральное и общественное',
         title: 'Респис для детей "Ковчег"',
         year: '2018',
@@ -86,7 +113,7 @@ export const projects: ProjectProps[] = [
         imageAlt: 'Храм впропрока Божьего Илии',
     },
     {
-        href: '/projects/9',
+        href: projectHref('Клиника "Семейный Доктор"'),
         category: 'Сакральное и общественное, дизайн',
         title: 'Клиника "Семейный Доктор"',
         year: '2023',
@@ -95,7 +122,7 @@ export const projects: ProjectProps[] = [
         imageAlt: 'Офис Семейный Доктор',
     },
     {
-        href: '/projects/10',
+        href: projectHref('Декорация к опере Тангейзер в Зарядье'),
         category: 'Дизнайн и арт-объекты',
         title: 'Декорация к опере Тангейзер в Зарядье',
         year: '2025',
@@ -114,7 +141,7 @@ function defaultTechnicalParameters(project: ProjectProps): string {
 }
 
 export function getProjectPagePayload(slug: string): ProjectPagePayload | null {
-    const index = projects.findIndex((p) => p.href === `/projects/${slug}`);
+    const index = projects.findIndex((p) => slugifyProjectTitle(p.title) === slug);
     if (index === -1) return null;
     const project = projects[index];
     return {
@@ -131,5 +158,5 @@ export function getProjectPagePayload(slug: string): ProjectPagePayload | null {
 }
 
 export function getAllProjectSlugs(): string[] {
-    return projects.map((p) => p.href.replace('/projects/', ''));
+    return projects.map((p) => slugifyProjectTitle(p.title));
 }

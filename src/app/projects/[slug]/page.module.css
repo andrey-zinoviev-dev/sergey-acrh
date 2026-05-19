@@ -5,8 +5,28 @@
   padding: 32px 0 80px;
 }
 
-.breadcrumbsTop {
-  margin-bottom: 28px;
+.heroRow {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.colAside {
+  min-width: 0;
+}
+
+.colMain {
+  min-width: 0;
+}
+
+.projectHeadline {
+  --headline-size: clamp(48px, 10vw, 120px);
+  --headline-weight: 400;
+  --headline-line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
 }
 
 .topNav {
@@ -210,6 +230,15 @@
 }
 
 @media (max-width: 768px) {
+  .heroRow {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .projectHeadline {
+    --headline-size: clamp(36px, 12vw, 64px);
+  }
+
   .subRow {
     grid-template-columns: 1fr;
   }

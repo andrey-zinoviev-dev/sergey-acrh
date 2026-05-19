@@ -28,7 +28,7 @@ export default function Projects() {
                         ))}
                         
                     </ul>
-                    <LinkComp href="/products">
+                    <LinkComp href="/projects">
                         <span>Посмотреть все проекты</span>
                         <ArrowIcon />
                     </LinkComp>

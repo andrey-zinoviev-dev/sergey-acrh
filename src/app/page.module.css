@@ -8,14 +8,6 @@
   background-color: #fafafa;
 }
 
-.scrollContainer {
-  flex: 1;
-  height: 100svh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  position: relative;
-}
-
 .intro {
   display: flex;
   flex-direction: column;

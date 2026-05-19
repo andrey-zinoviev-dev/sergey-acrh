@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Container from '@/components/Container';
+import Headline from '@/components/Headline';
 import Footer from '@/components/Footer';
 import { getAllProjectSlugs, getProjectPagePayload } from '@/app/utils/utils';
 import styles from './page.module.css';
@@ -40,14 +41,20 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     <>
       <main className={styles.page}>
         <Container>
-          <Breadcrumbs
-            className={styles.breadcrumbsTop}
-            items={[
-              { label: 'Главная', href: '/' },
-              { label: 'Проекты', href: '/products' },
-              { label: data.title },
-            ]}
-          />
+          <div className={styles.heroRow}>
+            <div className={styles.colAside}>
+              <Breadcrumbs
+                items={[
+                  { label: 'Главная', href: '/' },
+                  { label: 'Проекты', href: '/projects' },
+                  { label: data.title },
+                ]}
+              />
+            </div>
+            <div className={styles.colMain}>
+              <Headline>{data.title}</Headline>
+            </div>
+          </div>
 
           <figure className={styles.cover}>
             <Image

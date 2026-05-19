@@ -12,7 +12,7 @@
   box-sizing: border-box;
 }
 
-.productsContainer {
+.projectsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 2px;
@@ -111,6 +111,15 @@
   min-width: 140px;
 }
 
+.titleLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.titleLink:hover {
+  text-decoration: underline;
+}
+
 .colDesc {
   min-width: 180px;
   max-width: 320px;
@@ -130,7 +139,7 @@
 }
 
 @media (max-width: 768px) {
-  .productsContainer {
+  .projectsContainer {
     grid-template-columns: 1fr;
   }
 
