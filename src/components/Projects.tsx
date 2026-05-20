@@ -5,7 +5,7 @@ import Headline from './Headline';
 import ArrowIcon from './ArrowIcon';
 import Container from './Container';
 import LinkComp from './LinkComp';
-import { projects } from '@/app/utils/utils';
+import { homeProjects } from '@/app/utils/utils';
 // import { ProjectProps } from '@/app/interfaces/interfaces';
 
 export default function Projects() {
@@ -21,7 +21,7 @@ export default function Projects() {
 
                     </div>
                     <ul className={styles.projectsList}>
-                        {projects.map((project) => (
+                        {homeProjects.map((project) => (
                             <li className={styles.projectItem} key={project.href}>
                                 <Project {...project} />
                             </li>

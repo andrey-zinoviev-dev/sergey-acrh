@@ -2,23 +2,14 @@
   min-height: 100vh;
   background: #ffffff;
   color: #000000;
-  padding: 32px 0 80px;
+  padding: 48px 0;
 }
 
-.heroRow {
-  display: grid;
-  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-  gap: clamp(32px, 6vw, 80px);
-  align-items: start;
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vw, 40px);
   margin-bottom: clamp(32px, 5vw, 56px);
-}
-
-.colAside {
-  min-width: 0;
-}
-
-.colMain {
-  min-width: 0;
 }
 
 .projectHeadline {
@@ -150,8 +141,8 @@
 
 .splitLabel {
   font-family: var(--font-onest), sans-serif;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #000000;
@@ -209,32 +200,18 @@
   opacity: 0.85;
 }
 
-.sectionBody {
+.sectionText {
+  margin: 0;
+  max-width: 52ch;
   font-family: var(--font-onest), sans-serif;
-  font-size: clamp(20px, 2.4vw, 28px);
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 400;
   line-height: 1.35;
   letter-spacing: -0.02em;
   color: #000000;
-  max-width: 52ch;
-}
-
-.sectionBody p {
-  font: inherit;
-  color: inherit;
-  margin: 0 0 1em;
-}
-
-.sectionBody p:last-child {
-  margin-bottom: 0;
 }
 
 @media (max-width: 768px) {
-  .heroRow {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
   .projectHeadline {
     --headline-size: clamp(36px, 12vw, 64px);
   }

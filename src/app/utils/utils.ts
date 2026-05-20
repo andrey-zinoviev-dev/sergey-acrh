@@ -132,6 +132,18 @@ export const projects: ProjectProps[] = [
     },
 ];
 
+/** Home page “Мои проекты” — curated subset; full portfolio on `/projects`. */
+const HOME_PAGE_EXCLUDED_TITLES = new Set([
+    'Храм в честь пророка Илии',
+    'Респис для детей "Ковчег"',
+    'Центр культуры РФ в Сингапуре',
+    'Ферсман Тауэр',
+]);
+
+export const homeProjects: ProjectProps[] = projects.filter(
+    (p) => !HOME_PAGE_EXCLUDED_TITLES.has(p.title),
+);
+
 function defaultDescription(project: ProjectProps): string {
     return `Проект «${project.title}» (${project.year}, ${project.locationValue}) в направлении «${project.category}». В работе — архитектурная концепция, развитие объёма и материальности, согласование ключевых решений с заказчиком и смежными специалистами.`;
 }

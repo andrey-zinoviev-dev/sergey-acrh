@@ -41,19 +41,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     <>
       <main className={styles.page}>
         <Container>
-          <div className={styles.heroRow}>
-            <div className={styles.colAside}>
-              <Breadcrumbs
-                items={[
-                  { label: 'Главная', href: '/' },
-                  { label: 'Проекты', href: '/projects' },
-                  { label: data.title },
-                ]}
-              />
-            </div>
-            <div className={styles.colMain}>
-              <Headline>{data.title}</Headline>
-            </div>
+          <div className={styles.pageHeader}>
+            <Breadcrumbs
+              items={[
+                { label: 'Главная', href: '/' },
+                { label: 'Проекты', href: '/projects' },
+                { label: data.title },
+              ]}
+            />
+            <Headline>{data.title}</Headline>
           </div>
 
           <figure className={styles.cover}>
@@ -108,22 +104,17 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             <div className={styles.splitLabel} id="project-description-heading">
               [ 02 ] Описание
             </div>
-            <div className={styles.sectionBody}>
-              <p>{data.description}</p>
-            </div>
+            <p className={styles.sectionText}>{data.description}</p>
           </section>
 
           <section className={styles.splitSection} aria-labelledby="project-technical-heading">
             <div className={styles.splitLabel} id="project-technical-heading">
               [ 03 ] Технические параметры
             </div>
-            <div className={styles.sectionBody}>
-              <p>{data.technicalParameters}</p>
-            </div>
+            <p className={styles.sectionText}>{data.technicalParameters}</p>
           </section>
         </Container>
       </main>
-      <Footer />
     </>
   );
 }

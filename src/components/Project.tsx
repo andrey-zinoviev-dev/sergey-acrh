@@ -1,62 +1,47 @@
 import styles from './Project.module.css';
 import Image from 'next/image';
-// import Link from 'next/link';
 import ArrowIcon from './ArrowIcon';
 import LinkComp from './LinkComp';
 
 import { ProjectProps } from '@/app/interfaces/interfaces';
+
+function projectMetaLabel(category: string): string {
+    return category.split(',')[0].trim().toUpperCase();
+}
 
 export default function Project({
     href,
     category,
     title,
     year,
-    locationValue,
     imageSrc,
     imageAlt,
 }: ProjectProps) {
+    const metaLabel = projectMetaLabel(category);
+
     return (
         <LinkComp className={styles.projectLink} href={href}>
-            <div className={styles.projectInfo}>
-                <span>{year} /</span>
-                <span>{locationValue} /</span>
-                <span> {category}</span>
+            <div className={styles.row}>
+                <div className={styles.imageWrapper}>
+                    <Image
+                        src={imageSrc}
+                        alt={imageAlt}
+                        width={640}
+                        height={480}
+                        className={styles.image}
+                    />
+                </div>
+                <div className={styles.content}>
+                    <div className={styles.contentHeader}>
+                        <h3 className={styles.title}>{title}</h3>
+                        <ArrowIcon className={styles.arrowIcon} />
+                    </div>
+                    <p className={styles.meta}>
+                        <span className={styles.metaLabel}>{metaLabel}</span>
+                        <span className={styles.metaDate}>{year}</span>
+                    </p>
+                </div>
             </div>
-            <div className={styles.titleBlock}>
-                <h3 className={styles.title}>
-                    <span className={styles.titleText}>{title}</span>
-                    <ArrowIcon className={styles.arrowIcon} />
-                </h3>
-                <Image
-                    src={imageSrc}
-                    alt={imageAlt}
-                    width={800}
-                    height={600}
-                    className={styles.image}
-                />
-            </div>
-
         </LinkComp>
-        // <li key={title} className={styles.projectItem}>
-
-        // </li>
-        // <Link href={href} className={styles.link}>
-        //     <div className={styles.projectInfo}>
-        //         <span>{year} /</span>
-        //         <span>{locationValue} /</span>
-        //         <span> {category}</span>
-        //     </div>
-        //     <div className={styles.titleBlock}>
-        //         <h3 className={styles.title}>{title} <ArrowIcon className={styles.arrowIcon} /></h3>
-        //         <Image
-        //             src={imageSrc}
-        //             alt={imageAlt}
-        //             width={800}
-        //             height={600}
-        //             className={styles.image}
-        //         />
-        //     </div>
-
-        // </Link>
     );
 }
