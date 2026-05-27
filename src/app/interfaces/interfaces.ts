@@ -1,6 +1,8 @@
 export interface ProjectProps {
     href: string;
     category: string;
+    /** Направление для фильтра на странице «Проекты» */
+    filterCategory: string;
     title: string;
     year: string;
     locationValue: string;

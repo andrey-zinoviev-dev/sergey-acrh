@@ -40,6 +40,134 @@
 
 
 
+.filters {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 12px 24px;
+
+  padding-bottom: 16px;
+
+  margin-bottom: clamp(24px, 4vw, 40px);
+
+  border-bottom: 1px solid #e8e8e8;
+
+}
+
+
+
+.filterButtons {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 12px 24px;
+
+  flex: 1 1 auto;
+
+  min-width: min(280px, 100%);
+
+}
+
+
+
+.filterCount {
+
+  flex-shrink: 0;
+
+  margin-left: auto;
+
+  font-family: var(--font-onest), system-ui, sans-serif;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  font-weight: 700;
+
+  color: #0a0a0a;
+
+  white-space: nowrap;
+
+}
+
+
+
+.filterBtn,
+
+.filterActive {
+
+  border: none;
+
+  background: none;
+
+  padding: 0;
+
+  cursor: pointer;
+
+  font-family: var(--font-onest), system-ui, sans-serif;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  color: #888;
+
+  font-weight: 400;
+
+  text-align: left;
+
+}
+
+
+
+.filterActive {
+
+  color: #0a0a0a;
+
+  font-weight: 700;
+
+}
+
+
+
+@media (hover: hover) and (pointer: fine) {
+
+  .filterBtn:hover {
+
+    color: #0a0a0a;
+
+  }
+
+}
+
+
+
+.emptyRow {
+
+  padding: 24px 0;
+
+  color: #7a7a7a;
+
+  font-size: 14px;
+
+  text-transform: none;
+
+  letter-spacing: normal;
+
+}
+
+
+
 .tableWrap {
 
   width: 100%;
@@ -66,6 +194,107 @@
 
 
 
+.table,
+
+.table thead,
+
+.table tbody {
+
+  display: block;
+
+  width: 100%;
+
+}
+
+
+
+.table thead tr,
+
+.table tbody tr.projectRow {
+
+  display: grid;
+
+  grid-template-columns: 2.75rem minmax(0, 1fr) minmax(0, 0.78fr) minmax(0, 0.78fr);
+
+  column-gap: 12px;
+
+  align-items: start;
+
+}
+
+
+
+.colPrimary {
+
+  display: contents;
+
+}
+
+
+
+.primaryTop {
+
+  display: contents;
+
+}
+
+
+
+.metaInline {
+
+  display: contents;
+
+}
+
+
+
+
+
+
+
+
+.table thead th.colIndex,
+
+.table tbody .colIndex {
+
+  grid-column: 1;
+
+}
+
+
+
+.table thead th.colTitle,
+
+.table tbody .colTitle {
+
+  grid-column: 2;
+
+  min-width: 0;
+
+}
+
+
+
+.table thead th.colDesc,
+
+.table tbody .colDesc {
+
+  grid-column: 3;
+
+}
+
+
+
+.table thead th.colCategory,
+
+.table tbody .colCategory {
+
+  grid-column: 4;
+
+}
+
+
+
 .table thead th {
 
   font-family: var(--font-tenor-sans), serif;
@@ -86,11 +315,23 @@
 
 
 
-.table thead th:last-child,
+.table thead th.colDesc,
 
-.table tbody td:last-child {
+.table thead th.colCategory,
+
+.table tbody .colDesc,
+
+.table tbody .colCategory {
 
   text-align: right;
+
+}
+
+
+
+.table thead th.colCategory,
+
+.table tbody .colCategory {
 
   padding-right: 0;
 
@@ -98,21 +339,21 @@
 
 
 
-.table thead th:nth-child(3) {
-
-  text-align: right;
-
-}
 
 
 
-.table tbody td {
+
+.table tbody .colIndex,
+
+.table tbody .colTitle,
+
+.table tbody .colDesc,
+
+.table tbody .colCategory {
 
   font-family: var(--font-onest), system-ui, sans-serif;
 
   padding: 10px 12px 10px 0;
-
-  vertical-align: top;
 
   color: #7a7a7a;
 
@@ -122,19 +363,33 @@
 
   transition: color 0.15s ease, font-weight 0.15s ease;
 
-}
+  overflow-wrap: break-word;
 
-
-
-.table tbody td:nth-child(3) {
-
-  text-align: right;
+  word-break: normal;
 
 }
 
 
 
-.table tbody tr:last-child td {
+@media (min-width: 769px) {
+
+  .table tbody .colCategory {
+
+    padding: 10px 0;
+
+  }
+
+}
+
+
+
+.table tbody tr.projectRow:last-child .colIndex,
+
+.table tbody tr.projectRow:last-child .colTitle,
+
+.table tbody tr.projectRow:last-child .colDesc,
+
+.table tbody tr.projectRow:last-child .colCategory {
 
   border-bottom: none;
 
@@ -144,7 +399,13 @@
 
 @media (hover: hover) and (pointer: fine) {
 
-  .table tbody tr:hover td {
+  .table tbody tr.projectRow:hover .colIndex,
+
+  .table tbody tr.projectRow:hover .colTitle,
+
+  .table tbody tr.projectRow:hover .colDesc,
+
+  .table tbody tr.projectRow:hover .colCategory {
 
     color: #0a0a0a;
 
@@ -156,9 +417,28 @@
 
 
 
-.colIndex {
 
-  width: 44px;
+.table tbody tr:has(.emptyRow) {
+
+  display: block;
+
+}
+
+
+
+.table tbody tr:has(.emptyRow) td.emptyRow {
+
+  display: block;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+}
+
+
+
+.colIndex {
 
   white-space: nowrap;
 
@@ -168,7 +448,7 @@
 
 .colTitle {
 
-  min-width: 140px;
+  min-width: 0;
 
 }
 
@@ -192,21 +472,11 @@
 
 
 
-.colDesc {
+.colDesc,
 
-  min-width: 180px;
+.colCategory {
 
-  max-width: 320px;
-
-}
-
-
-
-.colRole {
-
-  min-width: 120px;
-
-  white-space: nowrap;
+  min-width: 0;
 
 }
 
@@ -214,21 +484,223 @@
 
 @media (max-width: 768px) {
 
-  .table thead th:nth-child(3),
+  .tableWrap {
 
-  .table tbody td:nth-child(3) {
-
-    text-align: left;
+    overflow-x: visible;
 
   }
 
 
 
-  .table thead th:last-child,
+  .table thead {
 
-  .table tbody td:last-child {
+    position: absolute;
+
+    width: 1px;
+
+    height: 1px;
+
+    padding: 0;
+
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+
+  }
+
+
+
+  .table tbody tr.projectRow {
+
+    grid-template-columns: 1fr;
+
+    column-gap: 0;
+
+    padding: 0;
+
+    border-bottom: none;
+
+  }
+
+
+
+  .colPrimary {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 6px;
+
+    min-width: 0;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #f0f0f0;
+
+  }
+
+
+
+  .primaryTop {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    min-width: 0;
+
+    width: 100%;
+
+  }
+
+
+
+  .table tbody .primaryTop .colIndex,
+
+  .table tbody .primaryTop .colTitle,
+
+  .table tbody .primaryTop .titleLink {
+
+    color: #0a0a0a;
+
+    font-weight: 500;
+
+  }
+
+
+
+  .metaInline {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: flex-start;
+
+    gap: 4px;
+
+    min-width: 0;
+
+    width: 100%;
+
+    max-width: 100%;
+
+    font-size: 11px;
+
+    line-height: 1.35;
+
+    letter-spacing: 0.04em;
+
+    text-transform: uppercase;
+
+    color: #7a7a7a;
+
+  }
+
+
+
+  .table tbody .metaInline .colDesc,
+
+  .table tbody .metaInline .colCategory {
+
+    width: 100%;
+
+    max-width: 100%;
+
+    min-width: 0;
+
+    align-self: stretch;
 
     text-align: left;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: inherit;
+
+    line-height: inherit;
+
+    letter-spacing: inherit;
+
+  }
+
+
+
+  .table tbody .colIndex,
+
+  .table tbody .colTitle,
+
+  .table tbody .colDesc,
+
+  .table tbody .colCategory {
+
+    padding: 0;
+
+    border-bottom: none;
+
+  }
+
+
+
+  .table tbody .colIndex {
+
+    flex-shrink: 0;
+
+  }
+
+
+
+  .table tbody .colTitle {
+
+    flex: 1;
+
+    min-width: 0;
+
+  }
+
+
+
+  .table tbody tr.projectRow:last-child .colPrimary {
+
+    border-bottom: none;
+
+  }
+
+
+
+  .table tbody tr:has(.emptyRow) {
+
+    display: block;
+
+  }
+
+
+
+  .emptyRow {
+
+    width: 100%;
+
+    border-bottom: none;
 
   }
 

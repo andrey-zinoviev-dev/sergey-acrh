@@ -16,6 +16,7 @@ export default function Project({
     year,
     imageSrc,
     imageAlt,
+    technicalParameters,
 }: ProjectProps) {
     const metaLabel = projectMetaLabel(category);
 
@@ -36,11 +37,15 @@ export default function Project({
                         <h3 className={styles.title}>{title}</h3>
                         <ArrowIcon className={styles.arrowIcon} />
                     </div>
+                    {technicalParameters ? (
+                        <p className={styles.technicalParameters}>{technicalParameters}</p>
+                    ) : null}
                     <p className={styles.meta}>
                         <span className={styles.metaLabel}>{metaLabel}</span>
                         <span className={styles.metaDate}>{year}</span>
                     </p>
                 </div>
+                
             </div>
         </LinkComp>
     );
