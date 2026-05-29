@@ -1,3 +1,8 @@
+export type GalleryImage = {
+    src: string;
+    alt: string;
+};
+
 export interface ProjectProps {
     href: string;
     category: string;
@@ -16,12 +21,14 @@ export interface ProjectProps {
     technicalParameters?: string;
     /** Подпись слева под обложкой */
     coverCaptionLeft?: string;
+    /** Галерея на странице проекта; если нет — подставляется обложка и stock-изображения */
+    galleryImages?: GalleryImage[];
 }
 
 /** Полные данные для страницы `/projects/[slug]` после нормализации полей */
 export type ProjectPagePayload = Omit<
     ProjectProps,
-    'status' | 'description' | 'technicalParameters' | 'coverCaptionLeft'
+    'status' | 'description' | 'technicalParameters' | 'coverCaptionLeft' | 'galleryImages'
 > & {
     slug: string;
     index: number;
@@ -30,4 +37,5 @@ export type ProjectPagePayload = Omit<
     description: string;
     technicalParameters: string;
     coverCaptionLeft: string;
+    galleryImages: GalleryImage[];
 };

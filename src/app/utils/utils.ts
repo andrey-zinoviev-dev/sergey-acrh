@@ -1,4 +1,4 @@
-import { ProjectPagePayload, ProjectProps } from '@/app/interfaces/interfaces';
+import { GalleryImage, ProjectPagePayload, ProjectProps } from '@/app/interfaces/interfaces';
 
 const CYRILLIC_TO_LATIN: Record<string, string> = {
     а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'yo', ж: 'zh',
@@ -44,6 +44,49 @@ export const PROJECT_FILTER_CATEGORIES = [
 ] as const;
 
 export type ProjectFilterCategory = (typeof PROJECT_FILTER_CATEGORIES)[number];
+
+/** Stock gallery images (Unsplash) — placeholder until project-specific photos are added. */
+const STOCK_GALLERY_IMAGES: GalleryImage[] = [
+    {
+        src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1600&h=900&fit=crop',
+        alt: 'Современное здание с панорамным остеклением',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1511818966892-d7d671b04002?h=900&w=1600&fit=crop',
+        alt: 'Архитектурный фасад и конструктивные элементы',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&h=900&fit=crop',
+        alt: 'Интерьер с вертикальными панелями',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=900&fit=crop',
+        alt: 'Офисное пространство и инженерные системы',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1479834346498-167754f3cc2e?w=1600&h=900&fit=crop',
+        alt: 'Градостроительный контекст и застройка',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&h=900&fit=crop',
+        alt: 'Частный дом и ландшафт',
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&h=900&fit=crop',
+        alt: 'Интерьер с деревянными акцентами',
+    },
+];
+
+const DEFAULT_GALLERY_SIZE = 6;
+
+function buildDefaultGalleryImages(project: ProjectProps): GalleryImage[] {
+    const cover: GalleryImage = { src: project.imageSrc, alt: project.imageAlt };
+    const extras = STOCK_GALLERY_IMAGES.filter((image) => image.src !== project.imageSrc).slice(
+        0,
+        DEFAULT_GALLERY_SIZE - 1,
+    );
+    return [cover, ...extras];
+}
 
 export const projects: ProjectProps[] = [
   {
@@ -277,6 +320,7 @@ export function getProjectPagePayload(slug: string): ProjectPagePayload | null {
         technicalParameters: project.technicalParameters ?? defaultTechnicalParameters(project),
         coverCaptionLeft:
             project.coverCaptionLeft ?? `${project.category} · ${project.year}`,
+        galleryImages: project.galleryImages ?? buildDefaultGalleryImages(project),
     };
 }
 

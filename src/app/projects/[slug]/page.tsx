@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Container from '@/components/Container';
 import Headline from '@/components/Headline';
-import Footer from '@/components/Footer';
+import ProjectImageGallery from '@/components/ProjectImageGallery';
 import { getAllProjectSlugs, getProjectPagePayload } from '@/app/utils/utils';
 import styles from './page.module.css';
 
@@ -53,15 +52,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
 
           <figure className={styles.cover}>
-            <Image
-              src={data.imageSrc}
-              alt={data.imageAlt}
-              width={1600}
-              height={900}
-              className={styles.coverImage}
-              priority
-              sizes="(max-width: 1200px) 100vw, 1200px"
-            />
+            <ProjectImageGallery images={data.galleryImages} />
             <figcaption className={styles.captionRow}>
               <span>{data.coverCaptionLeft}</span>
               <span className={styles.captionRight}>{counter}</span>
