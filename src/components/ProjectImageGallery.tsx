@@ -1,60 +1,49 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import type { GalleryImage } from '@/app/interfaces/interfaces';
+import ImageModal from '@/components/ImageModal';
 import styles from './ProjectImageGallery.module.css';
-
-const MOBILE_MEDIA_QUERY = '(max-width: 768px)';
 
 type ProjectImageGalleryProps = {
   images: GalleryImage[];
 };
 
 export default function ProjectImageGallery({ images }: ProjectImageGalleryProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const active = images[activeIndex] ?? images[0];
+  const [modalImage, setModalImage] = useState<GalleryImage | null>(null);
+  const cover = images[0];
 
-  useEffect(() => {
-    const thumb = thumbRefs.current[activeIndex];
-    if (!thumb || !window.matchMedia(MOBILE_MEDIA_QUERY).matches) {
-      return;
-    }
-    thumb.scrollIntoView({ inline: 'nearest', block: 'nearest' });
-  }, [activeIndex]);
-
-  if (!active) {
+  if (!cover) {
     return null;
   }
 
   return (
     <>
       <Image
-        src={active.src}
-        alt={active.alt}
+        src={cover.src}
+        alt={cover.alt}
         width={1600}
-        height={900}
+        height={669}
         className={styles.coverImage}
-        priority={activeIndex === 0}
+        priority
         sizes="(max-width: 1200px) 100vw, 1200px"
       />
 
       {images.length > 1 ? (
-        <div className={styles.thumbTrack} role="list" aria-label="Галерея проекта">
+        <div
+          className={styles.desktopThumbTrack}
+          role="list"
+          aria-label="Галерея проекта"
+        >
           {images.map((image, index) => (
             <button
-              key={`${image.src}-${index}`}
-              ref={(element) => {
-                thumbRefs.current[index] = element;
-              }}
+              key={`desktop-${image.src}-${index}`}
               type="button"
               role="listitem"
               className={styles.thumbButton}
-              data-active={index === activeIndex}
-              aria-label={`Показать изображение ${index + 1} из ${images.length}`}
-              aria-current={index === activeIndex ? 'true' : undefined}
-              onClick={() => setActiveIndex(index)}
+              aria-label={`Открыть изображение ${index + 1} из ${images.length}`}
+              onClick={() => setModalImage(image)}
             >
               <Image
                 src={image.src}
@@ -68,6 +57,39 @@ export default function ProjectImageGallery({ images }: ProjectImageGalleryProps
           ))}
         </div>
       ) : null}
+
+      <div
+        className={styles.mobileGalleryTrack}
+        role="list"
+        aria-label="Галерея проекта"
+      >
+        {images.map((image, index) => (
+          <button
+            key={`mobile-${image.src}-${index}`}
+            type="button"
+            role="listitem"
+            className={styles.mobileGallerySlide}
+            aria-label={`Открыть изображение ${index + 1} из ${images.length}`}
+            onClick={() => setModalImage(image)}
+          >
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={800}
+              height={450}
+              className={styles.mobileGalleryImage}
+              priority={index === 0}
+              sizes="85vw"
+            />
+          </button>
+        ))}
+      </div>
+
+      <ImageModal
+        image={modalImage}
+        isOpen={modalImage !== null}
+        onClose={() => setModalImage(null)}
+      />
     </>
   );
 }

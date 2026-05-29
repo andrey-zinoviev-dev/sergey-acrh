@@ -320,7 +320,7 @@ export function getProjectPagePayload(slug: string): ProjectPagePayload | null {
         technicalParameters: project.technicalParameters ?? defaultTechnicalParameters(project),
         coverCaptionLeft:
             project.coverCaptionLeft ?? `${project.category} · ${project.year}`,
-        galleryImages: project.galleryImages ?? buildDefaultGalleryImages(project),
+        galleryImages: STOCK_GALLERY_IMAGES,
     };
 }
 

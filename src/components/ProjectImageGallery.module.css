@@ -3,11 +3,10 @@
   height: auto;
   display: block;
   object-fit: cover;
-  aspect-ratio: 16 / 9;
-  background: #f5f5f5;
+  aspect-ratio: 2.39 / 1;
 }
 
-.thumbTrack {
+.desktopThumbTrack {
   display: flex;
   flex-wrap: nowrap;
   gap: 8px;
@@ -17,33 +16,24 @@
   scrollbar-width: none;
 }
 
-.thumbTrack::-webkit-scrollbar {
+.desktopThumbTrack::-webkit-scrollbar {
   display: none;
 }
 
 .thumbButton {
   flex: 0 0 auto;
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
   padding: 0;
   border: none;
-  background: #f5f5f5;
   cursor: pointer;
-  opacity: 0.5;
-  transition: opacity 0.2s ease;
-}
-
-.thumbButton[data-active='true'] {
   opacity: 1;
+  transition: opacity 0.2s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .thumbButton:hover {
     opacity: 0.85;
-  }
-
-  .thumbButton[data-active='true']:hover {
-    opacity: 1;
   }
 }
 
@@ -54,12 +44,48 @@
   object-fit: cover;
 }
 
+.mobileGalleryTrack {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .thumbTrack {
-    scroll-snap-type: x mandatory;
+  .coverImage {
+    display: none;
   }
 
-  .thumbButton {
+  .desktopThumbTrack {
+    display: none;
+  }
+
+  .mobileGalleryTrack {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .mobileGalleryTrack::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobileGallerySlide {
+    flex: 0 0 85%;
     scroll-snap-align: start;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .mobileGalleryImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
   }
 }
