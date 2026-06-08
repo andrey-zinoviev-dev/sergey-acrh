@@ -1,6 +1,6 @@
 .page {
 
-  min-height: 100vh;
+  min-height: 55svh;
 
   width: 100%;
 
@@ -52,11 +52,7 @@
 
   gap: 12px 24px;
 
-  padding-bottom: 16px;
-
-  margin-bottom: clamp(24px, 4vw, 40px);
-
-  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: clamp(32px, 5vw, 96px);
 
 }
 
@@ -214,7 +210,7 @@
 
   display: grid;
 
-  grid-template-columns: 2.75rem minmax(0, 1fr) minmax(0, 0.78fr) minmax(0, 0.78fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, .5fr) minmax(0, .5fr);
 
   column-gap: 12px;
 
@@ -253,21 +249,11 @@
 
 
 
-.table thead th.colIndex,
-
-.table tbody .colIndex {
-
-  grid-column: 1;
-
-}
-
-
-
 .table thead th.colTitle,
 
 .table tbody .colTitle {
 
-  grid-column: 2;
+  grid-column: 1;
 
   min-width: 0;
 
@@ -279,7 +265,7 @@
 
 .table tbody .colDesc {
 
-  grid-column: 3;
+  grid-column: 2;
 
 }
 
@@ -289,7 +275,7 @@
 
 .table tbody .colCategory {
 
-  grid-column: 4;
+  grid-column: 3;
 
 }
 
@@ -343,8 +329,6 @@
 
 
 
-.table tbody .colIndex,
-
 .table tbody .colTitle,
 
 .table tbody .colDesc,
@@ -373,6 +357,18 @@
 
 @media (min-width: 769px) {
 
+  .table tbody .colTitle,
+
+  .table tbody .colDesc,
+
+  .table tbody .colCategory {
+
+    font-size: 16px;
+
+  }
+
+
+
   .table tbody .colCategory {
 
     padding: 10px 0;
@@ -382,8 +378,6 @@
 }
 
 
-
-.table tbody tr.projectRow:last-child .colIndex,
 
 .table tbody tr.projectRow:last-child .colTitle,
 
@@ -398,8 +392,6 @@
 
 
 @media (hover: hover) and (pointer: fine) {
-
-  .table tbody tr.projectRow:hover .colIndex,
 
   .table tbody tr.projectRow:hover .colTitle,
 
@@ -433,14 +425,6 @@
   width: 100%;
 
   box-sizing: border-box;
-
-}
-
-
-
-.colIndex {
-
-  white-space: nowrap;
 
 }
 
@@ -570,8 +554,6 @@
 
 
 
-  .table tbody .primaryTop .colIndex,
-
   .table tbody .primaryTop .colTitle,
 
   .table tbody .primaryTop .titleLink {
@@ -646,8 +628,6 @@
 
 
 
-  .table tbody .colIndex,
-
   .table tbody .colTitle,
 
   .table tbody .colDesc,
@@ -657,14 +637,6 @@
     padding: 0;
 
     border-bottom: none;
-
-  }
-
-
-
-  .table tbody .colIndex {
-
-    flex-shrink: 0;
 
   }
 

@@ -4,7 +4,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import Container from '@/components/Container';
 import Headline from '@/components/Headline';
 import ProjectImageGallery from '@/components/ProjectImageGallery';
-import { getAllProjectSlugs, getProjectPagePayload } from '@/app/utils/utils';
+import { getAllProjectSlugs, getProjectPagePayload } from '@/lib/utils';
 import styles from './page.module.css';
 
 type PageProps = {
@@ -98,9 +98,18 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             <p className={styles.sectionText}>{data.description}</p>
           </section>
 
+          <section className={styles.splitSection} aria-labelledby="project-architect-heading">
+            <div className={styles.splitLabel} id="project-architect-heading">
+              [ 03 ] Роль архитектора
+            </div>
+            <p className={styles.sectionText}>
+              Создал генплан, определил все необходимые работы, рассчитал материалы для строительства
+            </p>
+          </section>
+
           <section className={styles.splitSection} aria-labelledby="project-technical-heading">
             <div className={styles.splitLabel} id="project-technical-heading">
-              [ 03 ] Технические параметры
+              [ 04 ] Технические параметры
             </div>
             <p className={styles.sectionText}>{data.technicalParameters}</p>
           </section>

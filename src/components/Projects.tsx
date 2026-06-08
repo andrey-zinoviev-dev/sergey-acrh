@@ -5,8 +5,8 @@ import Headline from './Headline';
 import ArrowIcon from './ArrowIcon';
 import Container from './Container';
 import LinkComp from './LinkComp';
-import { homeProjects } from '@/app/utils/utils';
-// import { ProjectProps } from '@/app/interfaces/interfaces';
+import { homeProjects } from '@/lib/utils';
+// import { ProjectProps } from '@/types/interfaces';
 
 export default function Projects() {
     return (

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import type { GalleryImage } from '@/app/interfaces/interfaces';
+import type { GalleryImage } from '@/types/interfaces';
 import ImageModal from '@/components/ImageModal';
 import styles from './ProjectImageGallery.module.css';
 
@@ -11,7 +11,9 @@ type ProjectImageGalleryProps = {
 };
 
 export default function ProjectImageGallery({ images }: ProjectImageGalleryProps) {
-  const [modalImage, setModalImage] = useState<GalleryImage | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const isModalOpen = activeIndex !== null;
+  const modalImage = activeIndex !== null ? images[activeIndex] : null;
   const cover = images[0];
 
   if (!cover) {
@@ -43,7 +45,7 @@ export default function ProjectImageGallery({ images }: ProjectImageGalleryProps
               role="listitem"
               className={styles.thumbButton}
               aria-label={`Открыть изображение ${index + 1} из ${images.length}`}
-              onClick={() => setModalImage(image)}
+              onClick={() => setActiveIndex(index)}
             >
               <Image
                 src={image.src}
@@ -70,7 +72,7 @@ export default function ProjectImageGallery({ images }: ProjectImageGalleryProps
             role="listitem"
             className={styles.mobileGallerySlide}
             aria-label={`Открыть изображение ${index + 1} из ${images.length}`}
-            onClick={() => setModalImage(image)}
+            onClick={() => setActiveIndex(index)}
           >
             <Image
               src={image.src}
@@ -87,8 +89,18 @@ export default function ProjectImageGallery({ images }: ProjectImageGalleryProps
 
       <ImageModal
         image={modalImage}
-        isOpen={modalImage !== null}
-        onClose={() => setModalImage(null)}
+        isOpen={isModalOpen}
+        onClose={() => setActiveIndex(null)}
+        onPrev={() =>
+          setActiveIndex((index) => (index !== null && index > 0 ? index - 1 : index))
+        }
+        onNext={() =>
+          setActiveIndex((index) =>
+            index !== null && index < images.length - 1 ? index + 1 : index,
+          )
+        }
+        hasPrev={activeIndex !== null && activeIndex > 0}
+        hasNext={activeIndex !== null && activeIndex < images.length - 1}
       />
     </>
   );

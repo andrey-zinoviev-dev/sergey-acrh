@@ -2,16 +2,28 @@
 
 import { useEffect, useId, useRef } from 'react';
 import Image from 'next/image';
-import type { GalleryImage } from '@/app/interfaces/interfaces';
+import type { GalleryImage } from '@/types/interfaces';
 import styles from './ImageModal.module.css';
 
 type ImageModalProps = {
   image: GalleryImage | null;
   isOpen: boolean;
   onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+  hasPrev: boolean;
+  hasNext: boolean;
 };
 
-export default function ImageModal({ image, isOpen, onClose }: ImageModalProps) {
+export default function ImageModal({
+  image,
+  isOpen,
+  onClose,
+  onPrev,
+  onNext,
+  hasPrev,
+  hasNext,
+}: ImageModalProps) {
   const titleId = useId();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -27,6 +39,10 @@ export default function ImageModal({ image, isOpen, onClose }: ImageModalProps) 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
+      } else if (event.key === 'ArrowLeft' && hasPrev) {
+        onPrev();
+      } else if (event.key === 'ArrowRight' && hasNext) {
+        onNext();
       }
     };
 
@@ -36,7 +52,7 @@ export default function ImageModal({ image, isOpen, onClose }: ImageModalProps) 
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, onPrev, onNext, hasPrev, hasNext]);
 
   if (!isOpen || !image) {
     return null;
@@ -57,6 +73,34 @@ export default function ImageModal({ image, isOpen, onClose }: ImageModalProps) 
       >
         ×
       </button>
+
+      {hasPrev ? (
+        <button
+          type="button"
+          className={`${styles.navButton} ${styles.navButtonPrev}`}
+          aria-label="Предыдущее изображение"
+          onClick={(event) => {
+            event.stopPropagation();
+            onPrev();
+          }}
+        >
+          ‹
+        </button>
+      ) : null}
+
+      {hasNext ? (
+        <button
+          type="button"
+          className={`${styles.navButton} ${styles.navButtonNext}`}
+          aria-label="Следующее изображение"
+          onClick={(event) => {
+            event.stopPropagation();
+            onNext();
+          }}
+        >
+          ›
+        </button>
+      ) : null}
 
       <dialog
         open

@@ -1,13 +1,162 @@
 .footer {
     background-color: black;
     width: 100%;
-    padding: 12px 0;
+    padding: 128px 0 48px;
 }
 
 .container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.contactSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.label {
+    font-family: var(--font-onest), sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 24px;
+}
+
+.heading {
+    font-family: var(--font-tenor-sans), sans-serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: white;
+    margin: 0;
+    max-width: 900px;
+}
+
+.headingLine {
+    display: block;
+}
+
+.headingLine:last-child {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.headingArrow {
+    --arrow-icon-width: 32px;
+    flex-shrink: 0;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    border: none;
+    background-color: white;
+    margin: 48px 0;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 720px;
+}
+
+.contactLink {
+    font-family: var(--font-onest), sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: opacity 0.3s ease;
+}
+
+.contactLink:hover {
+    opacity: 0.7;
+}
+
+.contactArrow {
+    --arrow-icon-width: 20px;
+    flex-shrink: 0;
+}
+
+.copyright {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tagline {
+    font-family: var(--font-onest), sans-serif;
+    font-size: 14px;
+    font-weight: 300;
     color: white;
 }
 
 .text {
     color: white;
+    font-family: var(--font-onest), sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 80px 0 40px;
+    }
+
+    .container {
+        gap: 48px;
+    }
+
+    .heading {
+        font-size: 36px;
+    }
+
+    .divider {
+        margin: 32px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 48px 0 32px;
+    }
+
+    .label {
+        margin-bottom: 16px;
+    }
+
+    .heading {
+        font-size: 24px;
+    }
+
+    .headingArrow {
+        --arrow-icon-width: 24px;
+    }
+
+    .divider {
+        margin: 24px 0;
+    }
+}
+
+@media screen and (max-width: 424px) {
+    .heading {
+        font-size: 20px;
+    }
 }

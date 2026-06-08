@@ -3,7 +3,7 @@ import Image from 'next/image';
 import ArrowIcon from './ArrowIcon';
 import LinkComp from './LinkComp';
 
-import { ProjectProps } from '@/app/interfaces/interfaces';
+import { ProjectProps } from '@/types/interfaces';
 
 function projectMetaLabel(category: string): string {
     return category.split(',')[0].trim().toUpperCase();

@@ -5,8 +5,8 @@ import Link from "next/link";
 import {
   projects,
   PROJECT_FILTER_CATEGORIES,
-} from "@/app/utils/utils";
-import styles from "@/app/projects/projects.module.css";
+} from "@/lib/utils";
+import styles from "@/app/(app)/projects/projects.module.css";
 
 const ALL = "Все";
 
@@ -73,7 +73,6 @@ export default function ProjectsFilters() {
         <table className={styles.table}>
           <thead>
             <tr>
-              <th className={styles.colIndex}>No</th>
               <th className={styles.colTitle}>Название</th>
               <th className={styles.colDesc}>Локация</th>
               <th className={styles.colCategory}>Категория</th>
@@ -82,18 +81,15 @@ export default function ProjectsFilters() {
           <tbody>
             {visible.length === 0 ? (
               <tr>
-                <td colSpan={4} className={styles.emptyRow}>
+                <td colSpan={3} className={styles.emptyRow}>
                   Нет проектов в этой категории
                 </td>
               </tr>
             ) : (
-              visible.map((project, i) => (
+              visible.map((project) => (
                 <tr key={project.href} className={styles.projectRow}>
                   <td className={styles.colPrimary}>
                     <div className={styles.primaryTop}>
-                      <span className={styles.colIndex}>
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
                       <div className={styles.colTitle}>
                         <Link href={project.href} className={styles.titleLink}>
                           {project.title}

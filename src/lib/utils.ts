@@ -1,4 +1,4 @@
-import { GalleryImage, ProjectPagePayload, ProjectProps } from '@/app/interfaces/interfaces';
+import { GalleryImage, ProjectPagePayload, ProjectProps } from '@/types/interfaces';
 
 const CYRILLIC_TO_LATIN: Record<string, string> = {
     а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'yo', ж: 'zh',
@@ -90,7 +90,7 @@ function buildDefaultGalleryImages(project: ProjectProps): GalleryImage[] {
 
 export const projects: ProjectProps[] = [
   {
-    href: "/projects/nagatinsky-zaton",
+    href: projectHref('Станция метро «Нагатинский затон»'),
     category: "САКРАЛЬНОЕ И ОБЩЕСТВЕННОЕ",
     filterCategory: "Социальные объекты",
     title: "Станция метро «Нагатинский затон»",
@@ -106,7 +106,7 @@ export const projects: ProjectProps[] = [
       "Проектирование архитектурного облика двухплатформенной станции мелкого заложения и наземного вестибюля.",
   },
   {
-    href: "/projects/louis-ii-stadium",
+    href: projectHref('Стадион Луи II'),
     category: "РЕКОНСТРУКЦИЯ И РЕСТАВРАЦИЯ",
     filterCategory: "Реставрация и реконструкция",
     title: "Стадион Луи II",
@@ -121,7 +121,7 @@ export const projects: ProjectProps[] = [
       "Модернизация объекта, трехуровневое зонирование фасадов, проектирование транспортного узла, реставрация исторических арок.",
   },
   {
-    href: "/projects/svetlograd",
+    href: projectHref('«Светлоград»'),
     category: "ТЕРРИТОРИИ",
     filterCategory: "Градостроительство и территории",
     title: "«Светлоград»",
@@ -136,7 +136,7 @@ export const projects: ProjectProps[] = [
       "Разработка генерального плана и функционального зонирования территории площадью более 70 га.",
   },
   {
-    href: "/projects/skyborn-gardens",
+    href: projectHref('Skyborn Gardens'),
     category: "САКРАЛЬНОЕ И ОБЩЕСТВЕННОЕ",
     filterCategory: "Многоэтажные дома",
     title: "Skyborn Gardens",
@@ -151,7 +151,7 @@ export const projects: ProjectProps[] = [
       "Разработка архитектурного решения и генплана комплекса из пяти башен, соединенных мостовыми переходами.",
   },
   {
-    href: "/projects/family-doctor",
+    href: projectHref('«Семейный доктор»'),
     category: "САКРАЛЬНОЕ И ОБЩЕСТВЕННОЕ",
     filterCategory: "Общественные интерьеры",
     title: "«Семейный доктор»",
@@ -166,7 +166,7 @@ export const projects: ProjectProps[] = [
       "Комплексная дизайн-концепция: планировочные решения, схемы инженерных сетей, расстановка оборудования и 3D-визуализация.",
   },
   {
-    href: "/projects/tannhauser-opera",
+    href: projectHref('«Тангейзер»'),
     category: "ДИЗАЙН И АРТ-ОБЪЕКТЫ",
     filterCategory: "Арт-объекты и искусство",
     title: "«Тангейзер»",
