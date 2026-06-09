@@ -5,10 +5,12 @@ import Headline from './Headline';
 import ArrowIcon from './ArrowIcon';
 import Container from './Container';
 import LinkComp from './LinkComp';
-import { homeProjects } from '@/lib/utils';
+import { getHomeProjectsFromCMS } from '@/lib/cms-projects';
 // import { ProjectProps } from '@/types/interfaces';
 
-export default function Projects() {
+export default async function Projects() {
+    const homeProjects = await getHomeProjectsFromCMS();
+
     return (
         <section className={styles.projects}>
             <Container className={styles.container}>

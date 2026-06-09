@@ -4,20 +4,21 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import Container from '@/components/Container';
 import Headline from '@/components/Headline';
 import ProjectImageGallery from '@/components/ProjectImageGallery';
-import { getAllProjectSlugs, getProjectDetail } from '@/lib/utils';
+import { getAllProjectSlugsFromCMS, getProjectDetailFromCMS } from '@/lib/cms-projects';
 import styles from './page.module.css';
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
-  return getAllProjectSlugs().map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  const slugs = await getAllProjectSlugsFromCMS();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const data = getProjectDetail(slug);
+  const data = await getProjectDetailFromCMS(slug);
   if (!data) {
     return { title: 'Проект не найден' };
   }
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const data = getProjectDetail(slug);
+  const data = await getProjectDetailFromCMS(slug);
   if (!data) {
     notFound();
   }

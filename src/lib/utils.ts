@@ -344,17 +344,18 @@ function defaultTechnicalParameters(project: Project): string {
     return `Объём сопоставим с полным циклом проектирования для объекта данного класса: от аналитики площадки до рабочей документации по архитектуре. Нормативная база — действующие стандарты и требования площадки в ${project.locationValue}; при необходимости — BIM-сопровождение и спецификации узлов.`;
 }
 
-export function getProjectDetail(slug: string): ProjectDetail | null {
-    const index = projects.findIndex((project) => project.slug === slug);
-    if (index === -1) return null;
-    const project = projects[index];
+export function toProjectDetail(
+    project: Project,
+    index: number,
+    total: number,
+): ProjectDetail {
     return {
         slug: project.slug,
         title: project.title,
         category: project.category,
         locationValue: project.locationValue,
-        index: index + 1,
-        total: projects.length,
+        index,
+        total,
         status: project.status ?? 'В портфолио',
         description: project.description ?? defaultDescription(project),
         technicalParameters: project.technicalParameters ?? defaultTechnicalParameters(project),
@@ -365,6 +366,12 @@ export function getProjectDetail(slug: string): ProjectDetail | null {
                 ? project.gallery
                 : buildDefaultGalleryImages(project),
     };
+}
+
+export function getProjectDetail(slug: string): ProjectDetail | null {
+    const index = projects.findIndex((project) => project.slug === slug);
+    if (index === -1) return null;
+    return toProjectDetail(projects[index], index + 1, projects.length);
 }
 
 /** @deprecated Use getProjectDetail */
