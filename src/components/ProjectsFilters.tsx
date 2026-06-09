@@ -5,7 +5,9 @@ import Link from "next/link";
 import {
   projects,
   PROJECT_FILTER_CATEGORIES,
+  toListItem,
 } from "@/lib/utils";
+import type { ProjectListItem } from "@/types/interfaces";
 import styles from "@/app/(app)/projects/projects.module.css";
 
 const ALL = "Все";
@@ -13,9 +15,12 @@ const ALL = "Все";
 export default function ProjectsFilters() {
   const [active, setActive] = useState<string>(ALL);
 
-  const visible = useMemo(() => {
-    if (active === ALL) return projects;
-    return projects.filter((p) => p.filterCategory === active);
+  const visible = useMemo((): ProjectListItem[] => {
+    const filtered =
+      active === ALL
+        ? projects
+        : projects.filter((project) => project.filterCategory === active);
+    return filtered.map(toListItem);
   }, [active]);
 
   const selectionCount = visible.length;
@@ -87,7 +92,7 @@ export default function ProjectsFilters() {
               </tr>
             ) : (
               visible.map((project) => (
-                <tr key={project.href} className={styles.projectRow}>
+                <tr key={project.slug} className={styles.projectRow}>
                   <td className={styles.colPrimary}>
                     <div className={styles.primaryTop}>
                       <div className={styles.colTitle}>

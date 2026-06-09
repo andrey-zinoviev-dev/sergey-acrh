@@ -3,39 +3,51 @@ export type GalleryImage = {
     alt: string;
 };
 
-export interface ProjectProps {
-    href: string;
-    category: string;
-    /** Направление для фильтра на странице «Проекты» */
-    filterCategory: string;
+/** Главный тип проекта — соответствует коллекции Payload `projects` */
+export type Project = {
+    slug: string;
     title: string;
+    category: string;
+    filterCategory: string;
     year: string;
     locationValue: string;
-    imageSrc: string;
-    imageAlt: string;
-    /** Статус объекта для страницы проекта */
+    coverImage: GalleryImage;
     status?: string;
-    /** Полный текст описания; если нет — подставляется из шаблона */
     description?: string;
-    /** Технические параметры / объём работ */
     technicalParameters?: string;
-    /** Подпись слева под обложкой */
     coverCaptionLeft?: string;
-    /** Галерея на странице проекта; если нет — подставляется обложка и stock-изображения */
-    galleryImages?: GalleryImage[];
-}
+    gallery?: GalleryImage[];
+    showOnHome?: boolean;
+};
 
-/** Полные данные для страницы `/projects/[slug]` после нормализации полей */
-export type ProjectPagePayload = Omit<
-    ProjectProps,
-    'status' | 'description' | 'technicalParameters' | 'coverCaptionLeft' | 'galleryImages'
+/** Строка таблицы на странице `/projects` (ProjectsFilters) */
+export type ProjectListItem = Pick<
+    Project,
+    'slug' | 'title' | 'locationValue' | 'filterCategory'
 > & {
-    slug: string;
-    index: number;
-    total: number;
+    href: string;
+};
+
+/** Данные для страницы `/projects/[slug]` после нормализации полей */
+export type ProjectDetail = Pick<
+    Project,
+    'slug' | 'title' | 'category' | 'locationValue'
+> & {
     status: string;
     description: string;
     technicalParameters: string;
     coverCaptionLeft: string;
     galleryImages: GalleryImage[];
+    index: number;
+    total: number;
+};
+
+/** Карточка проекта на главной странице */
+export type ProjectHomeCard = Pick<
+    Project,
+    'title' | 'category' | 'year' | 'technicalParameters'
+> & {
+    href: string;
+    imageSrc: string;
+    imageAlt: string;
 };

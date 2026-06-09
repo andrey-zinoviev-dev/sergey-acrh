@@ -9,6 +9,21 @@ const nextConfig: NextConfig = {
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'downloader.disk.yandex.ru',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'disk.yandex.ru',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'yadi.sk',
+        pathname: '/**',
+      },
     ],
   },
 };

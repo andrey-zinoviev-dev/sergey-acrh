@@ -3,7 +3,7 @@ import Image from 'next/image';
 import ArrowIcon from './ArrowIcon';
 import LinkComp from './LinkComp';
 
-import { ProjectProps } from '@/types/interfaces';
+import type { ProjectHomeCard } from '@/types/interfaces';
 
 function projectMetaLabel(category: string): string {
     return category.split(',')[0].trim().toUpperCase();
@@ -17,7 +17,7 @@ export default function Project({
     imageSrc,
     imageAlt,
     technicalParameters,
-}: ProjectProps) {
+}: ProjectHomeCard) {
     const metaLabel = projectMetaLabel(category);
 
     return (

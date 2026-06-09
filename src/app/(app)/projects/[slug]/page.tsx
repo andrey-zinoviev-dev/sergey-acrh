@@ -4,7 +4,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import Container from '@/components/Container';
 import Headline from '@/components/Headline';
 import ProjectImageGallery from '@/components/ProjectImageGallery';
-import { getAllProjectSlugs, getProjectPagePayload } from '@/lib/utils';
+import { getAllProjectSlugs, getProjectDetail } from '@/lib/utils';
 import styles from './page.module.css';
 
 type PageProps = {
@@ -17,7 +17,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const data = getProjectPagePayload(slug);
+  const data = getProjectDetail(slug);
   if (!data) {
     return { title: 'Проект не найден' };
   }
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const data = getProjectPagePayload(slug);
+  const data = getProjectDetail(slug);
   if (!data) {
     notFound();
   }

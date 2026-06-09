@@ -1,4 +1,10 @@
-import { GalleryImage, ProjectPagePayload, ProjectProps } from '@/types/interfaces';
+import {
+    GalleryImage,
+    Project,
+    ProjectDetail,
+    ProjectHomeCard,
+    ProjectListItem,
+} from '@/types/interfaces';
 
 const CYRILLIC_TO_LATIN: Record<string, string> = {
     а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'yo', ж: 'zh',
@@ -23,8 +29,30 @@ export function slugifyProjectTitle(title: string): string {
     return result.replace(/-+/g, '-').replace(/^-|-$/g, '');
 }
 
-function projectHref(title: string): string {
-    return `/projects/${slugifyProjectTitle(title)}`;
+export function projectHref(slug: string): string {
+    return `/projects/${slug}`;
+}
+
+export function toListItem(project: Project): ProjectListItem {
+    return {
+        slug: project.slug,
+        title: project.title,
+        locationValue: project.locationValue,
+        filterCategory: project.filterCategory,
+        href: projectHref(project.slug),
+    };
+}
+
+export function toHomeCard(project: Project): ProjectHomeCard {
+    return {
+        href: projectHref(project.slug),
+        title: project.title,
+        category: project.category,
+        year: project.year,
+        imageSrc: project.coverImage.src,
+        imageAlt: project.coverImage.alt,
+        technicalParameters: project.technicalParameters,
+    };
 }
 
 export const PROJECT_FILTER_CATEGORIES = [
@@ -79,106 +107,123 @@ const STOCK_GALLERY_IMAGES: GalleryImage[] = [
 
 const DEFAULT_GALLERY_SIZE = 6;
 
-function buildDefaultGalleryImages(project: ProjectProps): GalleryImage[] {
-    const cover: GalleryImage = { src: project.imageSrc, alt: project.imageAlt };
-    const extras = STOCK_GALLERY_IMAGES.filter((image) => image.src !== project.imageSrc).slice(
+function buildDefaultGalleryImages(project: Project): GalleryImage[] {
+    const cover = project.coverImage;
+    const extras = STOCK_GALLERY_IMAGES.filter((image) => image.src !== cover.src).slice(
         0,
         DEFAULT_GALLERY_SIZE - 1,
     );
     return [cover, ...extras];
 }
 
-export const projects: ProjectProps[] = [
+export const projects: Project[] = [
   {
-    href: projectHref('Станция метро «Нагатинский затон»'),
+    slug: slugifyProjectTitle('Станция метро «Нагатинский затон»'),
     category: "САКРАЛЬНОЕ И ОБЩЕСТВЕННОЕ",
     filterCategory: "Социальные объекты",
     title: "Станция метро «Нагатинский затон»",
     year: "2020",
     locationValue: "РФ, Москва",
-    imageSrc: "/Zaton.png",
-    imageAlt:
-      "Интерьер и конструктивные решения станции метро Нагатинский затон",
+    coverImage: {
+      src: "/Zaton.png",
+      alt: "Интерьер и конструктивные решения станции метро Нагатинский затон",
+    },
     status: "Проект",
     description:
       "Интеграция транспортной инфраструктуры в городскую среду через синтез ажурных металлических конструкций и панорамного остекления.",
     technicalParameters:
       "Проектирование архитектурного облика двухплатформенной станции мелкого заложения и наземного вестибюля.",
+    showOnHome: true,
   },
   {
-    href: projectHref('Стадион Луи II'),
+    slug: slugifyProjectTitle('Стадион Луи II'),
     category: "РЕКОНСТРУКЦИЯ И РЕСТАВРАЦИЯ",
     filterCategory: "Реставрация и реконструкция",
     title: "Стадион Луи II",
     year: "2020",
     locationValue: "Княжество Монако",
-    imageSrc: "/Lui.png",
-    imageAlt: "Архитектурная концепция модернизации стадиона Луи II",
+    coverImage: {
+      src: "/Lui.png",
+      alt: "Архитектурная концепция модернизации стадиона Луи II",
+    },
     status: "Концепт",
     description:
       "Масштабная реконцепция спортивного сооружения в мультимодальный хаб с сохранением исторического наследия и внедрением энергоэффективных технологий.",
     technicalParameters:
       "Модернизация объекта, трехуровневое зонирование фасадов, проектирование транспортного узла, реставрация исторических арок.",
+    showOnHome: true,
   },
   {
-    href: projectHref('«Светлоград»'),
+    slug: slugifyProjectTitle('«Светлоград»'),
     category: "ТЕРРИТОРИИ",
     filterCategory: "Градостроительство и территории",
     title: "«Светлоград»",
     year: "2020",
     locationValue: "РФ, Калининградская область",
-    imageSrc: "/project-1.png",
-    imageAlt: "Генеральный план и зонирование города Светлоград",
+    coverImage: {
+      src: "/project-1.png",
+      alt: "Генеральный план и зонирование города Светлоград",
+    },
     status: "Мастер-план",
     description:
       "Проектирование автономной городской экосистемы на принципах нового урбанизма, сбалансированного масштаба и бережной интеграции в природный ландшафт.",
     technicalParameters:
       "Разработка генерального плана и функционального зонирования территории площадью более 70 га.",
+    showOnHome: true,
   },
   {
-    href: projectHref('Skyborn Gardens'),
+    slug: slugifyProjectTitle('Skyborn Gardens'),
     category: "САКРАЛЬНОЕ И ОБЩЕСТВЕННОЕ",
     filterCategory: "Многоэтажные дома",
     title: "Skyborn Gardens",
     year: "2020",
     locationValue: "ОАЭ, Абу-Даби",
-    imageSrc: "/project-1.png",
-    imageAlt: "Высотный комплекс Skyborn Gardens в Абу-Даби",
+    coverImage: {
+      src: "/project-1.png",
+      alt: "Высотный комплекс Skyborn Gardens в Абу-Даби",
+    },
     status: "Концепт",
     description:
       "Вертикальный урбанизм нового поколения: синергия параметрической высотной архитектуры, биоклиматических систем и многоуровневых связей.",
     technicalParameters:
       "Разработка архитектурного решения и генплана комплекса из пяти башен, соединенных мостовыми переходами.",
+    showOnHome: true,
   },
   {
-    href: projectHref('«Семейный доктор»'),
+    slug: slugifyProjectTitle('«Семейный доктор»'),
     category: "САКРАЛЬНОЕ И ОБЩЕСТВЕННОЕ",
     filterCategory: "Общественные интерьеры",
     title: "«Семейный доктор»",
     year: "2020",
     locationValue: "Не указана",
-    imageSrc: "/project-1.png",
-    imageAlt: "Дизайн-интерьер и планировка клиники Семейный доктор",
+    coverImage: {
+      src: "/project-1.png",
+      alt: "Дизайн-интерьер и планировка клиники Семейный доктор",
+    },
     status: "Проект",
     description:
       "Создание эргономичного медицинского пространства, подчиненного строгой технологической логике, международным стандартам и психологическому комфорту.",
     technicalParameters:
       "Комплексная дизайн-концепция: планировочные решения, схемы инженерных сетей, расстановка оборудования и 3D-визуализация.",
+    showOnHome: true,
   },
   {
-    href: projectHref('«Тангейзер»'),
+    slug: slugifyProjectTitle('«Тангейзер»'),
     category: "ДИЗАЙН И АРТ-ОБЪЕКТЫ",
     filterCategory: "Арт-объекты и искусство",
     title: "«Тангейзер»",
     year: "2020",
     locationValue: "РФ, Москва, парк «Зарядье»",
-    imageSrc: "/project-1.png",
-    imageAlt: "Пространственная арт-инсталляция в парке Зарядье",
+    coverImage: {
+      src: "/project-1.png",
+      alt: "Пространственная арт-инсталляция в парке Зарядье",
+    },
     status: "Реализован",
     description:
       "Проектирование средового арт-объекта на стыке театральной сценографии, монументальной архитектуры и точного инженерного расчета нагрузок.",
     technicalParameters:
       "Архитектурно-конструктивное проектирование инсталляции, расчет несущих нагрузок, подбор материалов и разработка монтажных схем.",
+    showOnHome: true,
   },
 ];
 // [
@@ -287,32 +332,27 @@ export const projects: ProjectProps[] = [
 // ];
 
 /** Home page “Мои проекты” — curated subset; full portfolio on `/projects`. */
-const HOME_PAGE_EXCLUDED_TITLES = new Set([
-    'Храм в честь пророка Илии',
-    'Респис для детей "Ковчег"',
-    'Центр культуры РФ в Сингапуре',
-    'Ферсман Тауэр',
-]);
+export const homeProjects: ProjectHomeCard[] = projects
+    .filter((project) => project.showOnHome)
+    .map(toHomeCard);
 
-export const homeProjects: ProjectProps[] = projects.filter(
-    (p) => !HOME_PAGE_EXCLUDED_TITLES.has(p.title),
-);
-
-function defaultDescription(project: ProjectProps): string {
+function defaultDescription(project: Project): string {
     return `Проект «${project.title}» (${project.year}, ${project.locationValue}) в направлении «${project.category}». В работе — архитектурная концепция, развитие объёма и материальности, согласование ключевых решений с заказчиком и смежными специалистами.`;
 }
 
-function defaultTechnicalParameters(project: ProjectProps): string {
+function defaultTechnicalParameters(project: Project): string {
     return `Объём сопоставим с полным циклом проектирования для объекта данного класса: от аналитики площадки до рабочей документации по архитектуре. Нормативная база — действующие стандарты и требования площадки в ${project.locationValue}; при необходимости — BIM-сопровождение и спецификации узлов.`;
 }
 
-export function getProjectPagePayload(slug: string): ProjectPagePayload | null {
-    const index = projects.findIndex((p) => slugifyProjectTitle(p.title) === slug);
+export function getProjectDetail(slug: string): ProjectDetail | null {
+    const index = projects.findIndex((project) => project.slug === slug);
     if (index === -1) return null;
     const project = projects[index];
     return {
-        ...project,
-        slug,
+        slug: project.slug,
+        title: project.title,
+        category: project.category,
+        locationValue: project.locationValue,
         index: index + 1,
         total: projects.length,
         status: project.status ?? 'В портфолио',
@@ -320,10 +360,16 @@ export function getProjectPagePayload(slug: string): ProjectPagePayload | null {
         technicalParameters: project.technicalParameters ?? defaultTechnicalParameters(project),
         coverCaptionLeft:
             project.coverCaptionLeft ?? `${project.category} · ${project.year}`,
-        galleryImages: STOCK_GALLERY_IMAGES,
+        galleryImages:
+            project.gallery && project.gallery.length > 0
+                ? project.gallery
+                : buildDefaultGalleryImages(project),
     };
 }
 
+/** @deprecated Use getProjectDetail */
+export const getProjectPagePayload = getProjectDetail;
+
 export function getAllProjectSlugs(): string[] {
-    return projects.map((p) => slugifyProjectTitle(p.title));
+    return projects.map((project) => project.slug);
 }
