@@ -4,7 +4,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import Container from '@/components/Container';
 import Headline from '@/components/Headline';
 import ProjectImageGallery from '@/components/ProjectImageGallery';
-import { getAllProjectSlugsFromCMS, getProjectDetailFromCMS } from '@/lib/cms-projects';
+import { getAllProjectSlugs, getProjectDetail } from '@/sanity/projects';
 import styles from './page.module.css';
 
 type PageProps = {
@@ -12,13 +12,13 @@ type PageProps = {
 };
 
 export async function generateStaticParams() {
-  const slugs = await getAllProjectSlugsFromCMS();
+  const slugs = await getAllProjectSlugs();
   return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const data = await getProjectDetailFromCMS(slug);
+  const data = await getProjectDetail(slug);
   if (!data) {
     return { title: 'Проект не найден' };
   }
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const data = await getProjectDetailFromCMS(slug);
+  const data = await getProjectDetail(slug);
   if (!data) {
     notFound();
   }

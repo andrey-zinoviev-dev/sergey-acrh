@@ -1,4 +1,3 @@
-import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -36,11 +35,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '**.googleusercontent.com',
+        hostname: 'cdn.sanity.io',
         pathname: '/**',
       },
     ],
   },
 };
 
-export default withPayload(nextConfig);
+export default nextConfig;

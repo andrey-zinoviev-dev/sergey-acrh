@@ -1,16 +1,16 @@
 import styles from './Projects.module.css';
 import Project from './Project';
 import Headline from './Headline';
-// import Link from 'next/link';
 import ArrowIcon from './ArrowIcon';
 import Container from './Container';
 import LinkComp from './LinkComp';
-import { getHomeProjectsFromCMS } from '@/lib/cms-projects';
-// import { ProjectProps } from '@/types/interfaces';
+import type { ProjectHomeCard } from '@/types/interfaces';
 
-export default async function Projects() {
-    const homeProjects = await getHomeProjectsFromCMS();
+type ProjectsProps = {
+  projects: ProjectHomeCard[];
+};
 
+export default function Projects({ projects }: ProjectsProps) {
     return (
         <section className={styles.projects}>
             <Container className={styles.container}>
@@ -23,7 +23,7 @@ export default async function Projects() {
 
                     </div>
                     <ul className={styles.projectsList}>
-                        {homeProjects.map((project) => (
+                        {projects.map((project) => (
                             <li className={styles.projectItem} key={project.href}>
                                 <Project {...project} />
                             </li>

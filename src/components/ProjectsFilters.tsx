@@ -3,25 +3,24 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
-  projects,
   PROJECT_FILTER_CATEGORIES,
-  toListItem,
 } from "@/lib/utils";
 import type { ProjectListItem } from "@/types/interfaces";
 import styles from "@/app/(app)/projects/projects.module.css";
 
 const ALL = "Все";
 
-export default function ProjectsFilters() {
+type ProjectsFiltersProps = {
+  projects: ProjectListItem[];
+};
+
+export default function ProjectsFilters({ projects }: ProjectsFiltersProps) {
   const [active, setActive] = useState<string>(ALL);
 
   const visible = useMemo((): ProjectListItem[] => {
-    const filtered =
-      active === ALL
-        ? projects
-        : projects.filter((project) => project.filterCategory === active);
-    return filtered.map(toListItem);
-  }, [active]);
+    if (active === ALL) return projects;
+    return projects.filter((project) => project.filterCategory === active);
+  }, [active, projects]);
 
   const selectionCount = visible.length;
 

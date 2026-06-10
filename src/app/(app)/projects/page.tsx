@@ -4,6 +4,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Headline from "@/components/Headline";
 import Container from "@/components/Container";
 import ProjectsFilters from "@/components/ProjectsFilters";
+import { getProjects } from "@/sanity/projects";
+import { toListItem } from "@/lib/utils";
 
 import styles from "./projects.module.css";
 
@@ -12,7 +14,9 @@ export const metadata: Metadata = {
   description: "Все проекты архитектурного бюро.",
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects = (await getProjects()).map(toListItem);
+
   return (
     <div className={styles.page}>
       <section className={styles.section}>
@@ -27,7 +31,7 @@ export default function ProjectsPage() {
             <Headline>Проекты</Headline>
           </div>
 
-          <ProjectsFilters />
+          <ProjectsFilters projects={projects} />
         </Container>
       </section>
     </div>

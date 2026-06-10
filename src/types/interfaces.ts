@@ -3,7 +3,7 @@ export type GalleryImage = {
     alt: string;
 };
 
-/** Главный тип проекта — соответствует коллекции Payload `projects` */
+/** Главный тип проекта в портфолио */
 export type Project = {
     slug: string;
     title: string;

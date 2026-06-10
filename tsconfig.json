@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "target": "ES2017",
     "lib": [
       "dom",
@@ -25,11 +26,8 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ],
-      "@payload-config": [
-        "./src/payload.config.ts"
       ]
-    }
+    },
   },
   "include": [
     "next-env.d.ts",
@@ -41,5 +39,5 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }
