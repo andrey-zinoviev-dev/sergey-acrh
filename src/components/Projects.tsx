@@ -4,13 +4,10 @@ import Headline from './Headline';
 import ArrowIcon from './ArrowIcon';
 import Container from './Container';
 import LinkComp from './LinkComp';
-import type { ProjectHomeCard } from '@/types/interfaces';
+import { getHomeProjects } from '@/sanity/projects';
 
-type ProjectsProps = {
-  projects: ProjectHomeCard[];
-};
-
-export default function Projects({ projects }: ProjectsProps) {
+export default async function Projects() {
+    const projects = await getHomeProjects();
     return (
         <section className={styles.projects}>
             <Container className={styles.container}>

@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef } from 'react';
 import Image from 'next/image';
-import type { GalleryImage } from '@/types/interfaces';
+import type { GalleryImage } from '@/types/gallery';
 import styles from './ImageModal.module.css';
 
 type ImageModalProps = {

@@ -5,7 +5,6 @@ import Headline from "@/components/Headline";
 import Container from "@/components/Container";
 import ProjectsFilters from "@/components/ProjectsFilters";
 import { getProjects } from "@/sanity/projects";
-import { toListItem } from "@/lib/utils";
 
 import styles from "./projects.module.css";
 
@@ -15,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsPage() {
-  const projects = (await getProjects()).map(toListItem);
+  const projects = await getProjects();
 
   return (
     <div className={styles.page}>

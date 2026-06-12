@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import type { GalleryImage } from '@/types/interfaces';
+import type { GalleryImage } from '@/types/gallery';
 import ImageModal from '@/components/ImageModal';
 import styles from './ProjectImageGallery.module.css';
 

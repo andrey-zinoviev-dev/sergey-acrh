@@ -1,18 +1,12 @@
-import { toHomeCard, toListItem, toProjectDetail } from '@/lib/utils';
-import type {
-  GalleryImage,
-  Project,
-  ProjectDetail,
-  ProjectHomeCard,
-  ProjectListItem,
-} from '@/types/interfaces';
+import type { GalleryImage } from '@/types/gallery';
 
 import { sanityClient } from './client';
 import { urlFor } from './image';
 import {
   PROJECT_BY_SLUG_QUERY,
+  PROJECTS_HOME_QUERY,
+  PROJECTS_LIST_QUERY,
   PROJECT_SLUGS_QUERY,
-  PROJECTS_QUERY,
 } from './queries';
 
 type SanityImage = {
@@ -22,21 +16,61 @@ type SanityImage = {
   };
 };
 
-type SanityProject = {
+type SanityProjectDetail = {
   slug?: string;
   title: string;
   category: string;
-  filterCategory: string;
   year: string;
   locationValue: string;
   status?: string;
   description?: string;
   technicalParameters?: string;
   coverCaptionLeft?: string;
-  showOnHome?: boolean | null;
   coverImage?: SanityImage;
   gallery?: SanityImage[] | null;
 };
+
+type SanityProjectHome = {
+  slug?: string;
+  title: string;
+  category: string;
+  year: string;
+  technicalParameters?: string;
+  coverImage?: SanityImage;
+};
+
+const STOCK_GALLERY_IMAGES: GalleryImage[] = [
+  {
+    src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1600&h=900&fit=crop',
+    alt: 'Современное здание с панорамным остеклением',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1511818966892-d7d671b04002?h=900&w=1600&fit=crop',
+    alt: 'Архитектурный фасад и конструктивные элементы',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&h=900&fit=crop',
+    alt: 'Интерьер с вертикальными панелями',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=900&fit=crop',
+    alt: 'Офисное пространство и инженерные системы',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1479834346498-167754f3cc2e?w=1600&h=900&fit=crop',
+    alt: 'Градостроительный контекст и застройка',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&h=900&fit=crop',
+    alt: 'Частный дом и ландшафт',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&h=900&fit=crop',
+    alt: 'Интерьер с деревянными акцентами',
+  },
+];
+
+const DEFAULT_GALLERY_SIZE = 6;
 
 function normalizeSlug(rawSlug: string): string {
   return rawSlug.replace(/^\/projects\/?/, '').replace(/^\/+|\/+$/g, '');
@@ -58,51 +92,68 @@ function mapGalleryImage(image: SanityImage, fallbackAlt: string): GalleryImage 
   };
 }
 
-function mapSanityProject(doc: SanityProject): Project | null {
-  if (!doc.slug) return null;
-
-  const slug = normalizeSlug(doc.slug);
-  const coverImage = mapGalleryImage(doc.coverImage ?? {}, doc.title);
-
-  if (!coverImage) return null;
-
-  const gallery =
-    doc.gallery
-      ?.map((image) => mapGalleryImage(image, doc.title))
-      .filter((image): image is GalleryImage => image !== null) ?? undefined;
-
-  return {
-    slug,
-    title: doc.title,
-    category: doc.category,
-    filterCategory: doc.filterCategory,
-    year: doc.year,
-    locationValue: doc.locationValue,
-    coverImage,
-    status: doc.status,
-    description: doc.description,
-    technicalParameters: doc.technicalParameters,
-    coverCaptionLeft: doc.coverCaptionLeft,
-    gallery,
-    showOnHome: doc.showOnHome ?? true,
-  };
+function buildDefaultGalleryImages(cover: GalleryImage): GalleryImage[] {
+  const extras = STOCK_GALLERY_IMAGES.filter((image) => image.src !== cover.src).slice(
+    0,
+    DEFAULT_GALLERY_SIZE - 1,
+  );
+  return [cover, ...extras];
 }
 
-export async function getProjects(): Promise<Project[]> {
-  const docs = await sanityClient.fetch<SanityProject[]>(PROJECTS_QUERY);
+function defaultDescription(doc: SanityProjectDetail): string {
+  return `Проект «${doc.title}» (${doc.year}, ${doc.locationValue}) в направлении «${doc.category}». В работе — архитектурная концепция, развитие объёма и материальности, согласование ключевых решений с заказчиком и смежными специалистами.`;
+}
+
+function defaultTechnicalParameters(doc: SanityProjectDetail): string {
+  return `Объём сопоставим с полным циклом проектирования для объекта данного класса: от аналитики площадки до рабочей документации по архитектуре. Нормативная база — действующие стандарты и требования площадки в ${doc.locationValue}; при необходимости — BIM-сопровождение и спецификации узлов.`;
+}
+
+export async function getProjects() {
+  const docs = await sanityClient.fetch<
+    Array<{
+      title: string;
+      slug?: string;
+      locationValue: string;
+      filterCategory: string;
+    }>
+  >(PROJECTS_LIST_QUERY);
+
   return docs
-    .map(mapSanityProject)
-    .filter((project): project is Project => project !== null);
+    .filter((doc) => doc.slug)
+    .map((doc) => {
+      const slug = normalizeSlug(doc.slug!);
+      return {
+        slug,
+        title: doc.title,
+        locationValue: doc.locationValue,
+        filterCategory: doc.filterCategory,
+        href: `/projects/${slug}`,
+      };
+    });
 }
 
-export async function getProjectListItems(): Promise<ProjectListItem[]> {
-  const projects = await getProjects();
-  return projects.map(toListItem);
-}
+export async function getHomeProjects() {
+  const docs = await sanityClient.fetch<SanityProjectHome[]>(PROJECTS_HOME_QUERY);
 
-export async function getHomeProjects(): Promise<ProjectHomeCard[]> {
-  const projects = await getProjects();
-  return projects.filter((project) => project.showOnHome).map(toHomeCard);
+  return docs.flatMap((doc) => {
+    if (!doc.slug) return [];
+
+    const coverImage = mapGalleryImage(doc.coverImage ?? {}, doc.title);
+    if (!coverImage) return [];
+
+    const slug = normalizeSlug(doc.slug);
+    return [
+      {
+        href: `/projects/${slug}`,
+        title: doc.title,
+        category: doc.category,
+        year: doc.year,
+        imageSrc: coverImage.src,
+        imageAlt: coverImage.alt,
+        technicalParameters: doc.technicalParameters,
+      },
+    ];
+  });
 }
 
 export async function getAllProjectSlugs(): Promise<string[]> {
@@ -112,17 +163,33 @@ export async function getAllProjectSlugs(): Promise<string[]> {
     .filter((slug): slug is string => Boolean(slug));
 }
 
-export async function getProjectDetail(slug: string): Promise<ProjectDetail | null> {
-  const doc = await sanityClient.fetch<SanityProject | null>(PROJECT_BY_SLUG_QUERY, {
+export async function getProjectDetail(slug: string) {
+  const doc = await sanityClient.fetch<SanityProjectDetail | null>(PROJECT_BY_SLUG_QUERY, {
     slugCandidates: slugCandidates(slug),
   });
 
-  const project = doc ? mapSanityProject(doc) : null;
-  if (!project) return null;
+  if (!doc?.slug) return null;
 
-  const allProjects = await getProjects();
-  const index = allProjects.findIndex((item) => item.slug === project.slug);
-  if (index === -1) return toProjectDetail(project, 1, 1);
+  const coverImage = mapGalleryImage(doc.coverImage ?? {}, doc.title);
+  if (!coverImage) return null;
 
-  return toProjectDetail(project, index + 1, allProjects.length);
+  const gallery =
+    doc.gallery
+      ?.map((image) => mapGalleryImage(image, doc.title))
+      .filter((image): image is GalleryImage => image !== null) ?? [];
+
+  return {
+    title: doc.title,
+    category: doc.category,
+    locationValue: doc.locationValue,
+    status: doc.status ?? 'В портфолио',
+    description: doc.description ?? defaultDescription(doc),
+    technicalParameters: doc.technicalParameters ?? defaultTechnicalParameters(doc),
+    coverCaptionLeft: doc.coverCaptionLeft ?? `${doc.category} · ${doc.year}`,
+    galleryImages: gallery.length > 0 ? gallery : buildDefaultGalleryImages(coverImage),
+  };
 }
+
+export type ProjectListRow = Awaited<ReturnType<typeof getProjects>>[number];
+export type ProjectHomeCard = Awaited<ReturnType<typeof getHomeProjects>>[number];
+export type ProjectPage = NonNullable<Awaited<ReturnType<typeof getProjectDetail>>>;

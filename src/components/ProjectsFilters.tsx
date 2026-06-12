@@ -5,19 +5,19 @@ import Link from "next/link";
 import {
   PROJECT_FILTER_CATEGORIES,
 } from "@/lib/utils";
-import type { ProjectListItem } from "@/types/interfaces";
+import type { ProjectListRow } from "@/sanity/projects";
 import styles from "@/app/(app)/projects/projects.module.css";
 
 const ALL = "Все";
 
 type ProjectsFiltersProps = {
-  projects: ProjectListItem[];
+  projects: ProjectListRow[];
 };
 
 export default function ProjectsFilters({ projects }: ProjectsFiltersProps) {
   const [active, setActive] = useState<string>(ALL);
 
-  const visible = useMemo((): ProjectListItem[] => {
+  const visible = useMemo((): ProjectListRow[] => {
     if (active === ALL) return projects;
     return projects.filter((project) => project.filterCategory === active);
   }, [active, projects]);

@@ -35,8 +35,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const counter = `${String(data.index).padStart(2, '0')} — ${String(data.total).padStart(2, '0')}`;
-
   return (
     <>
       <main className={styles.page}>
@@ -56,7 +54,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             <ProjectImageGallery images={data.galleryImages} />
             <figcaption className={styles.captionRow}>
               <span>{data.coverCaptionLeft}</span>
-              <span className={styles.captionRight}>{counter}</span>
             </figcaption>
           </figure>
 
