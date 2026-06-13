@@ -57,7 +57,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </figcaption>
           </figure>
 
-          <section className={styles.splitSection} aria-labelledby="project-categories-heading">
+          {/* <section className={styles.splitSection} aria-labelledby="project-categories-heading">
             <div className={styles.splitLabel} id="project-categories-heading">
               [ 01 ] Категории
             </div>
@@ -87,7 +87,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </span>
               </div>
             </div>
-          </section>
+          </section> */}
 
           <section className={styles.splitSection} aria-labelledby="project-description-heading">
             <div className={styles.splitLabel} id="project-description-heading">
