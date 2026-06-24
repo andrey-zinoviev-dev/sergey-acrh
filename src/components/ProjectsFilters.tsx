@@ -33,27 +33,7 @@ export default function ProjectsFilters({ projects }: ProjectsFiltersProps) {
     <>
       <nav className={styles.filters} aria-label="Фильтр по направлениям">
         <div className={styles.filterButtons}>
-          {/* <button
-            type="button"
-            className={active === ALL ? styles.filterActive : styles.filterBtn}
-            aria-pressed={active === ALL}
-            onClick={() => setActive(ALL)}
-          >
-            {ALL}
-          </button>
-          {PROJECT_FILTER_CATEGORIES.map((label) => (
-            <button
-              key={label}
-              type="button"
-              className={
-                active === label ? styles.filterActive : styles.filterBtn
-              }
-              aria-pressed={active === label}
-              onClick={() => setActive(label)}
-            >
-              {label}
-            </button>
-          ))} */}
+
           {PROJECT_FILTER_CATEGORIES.map((label) => (
             <button
               key={label}
@@ -68,9 +48,7 @@ export default function ProjectsFilters({ projects }: ProjectsFiltersProps) {
             </button>
           ))}
         </div>
-        {/* <span className={styles.filterCount} aria-live="polite">
-          ({selectionCount})
-        </span> */}
+
       </nav>
 
       <ProjectsGrid

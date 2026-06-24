@@ -189,7 +189,39 @@ export default function ImageModal({
             sizes="(max-width: 768px) 100vw, 1440px"
             priority
           />
+          
+          {images.length > 1 ? (
+            <div
+              className={styles.thumbTrack}
+              role="list"
+              aria-label="Превью галереи"
+            >
+              {images.map((thumb, index) => (
+                <button
+                  key={`modal-${thumb.src}-${index}`}
+                  type="button"
+                  role="listitem"
+                  className={`${styles.thumbButton} ${
+                    index === activeIndex ? styles.thumbButtonActive : ''
+                  }`}
+                  aria-label={`Показать изображение ${index + 1} из ${images.length}`}
+                  aria-current={index === activeIndex ? 'true' : undefined}
+                  onClick={() => onSelect(index)}
+                >
+                  <Image
+                    src={thumb.src}
+                    alt=""
+                    width={120}
+                    height={120}
+                    className={styles.thumbImage}
+                    sizes="90px"
+                  />
+                </button>
+              ))}
+            </div>
+          ) : null}
         </div>
+        
 
         <div className={styles.mobileGallery}>
           <div
@@ -226,36 +258,7 @@ export default function ImageModal({
           </div>
         </div>
 
-        {images.length > 1 ? (
-          <div
-            className={styles.thumbTrack}
-            role="list"
-            aria-label="Превью галереи"
-          >
-            {images.map((thumb, index) => (
-              <button
-                key={`modal-${thumb.src}-${index}`}
-                type="button"
-                role="listitem"
-                className={`${styles.thumbButton} ${
-                  index === activeIndex ? styles.thumbButtonActive : ''
-                }`}
-                aria-label={`Показать изображение ${index + 1} из ${images.length}`}
-                aria-current={index === activeIndex ? 'true' : undefined}
-                onClick={() => onSelect(index)}
-              >
-                <Image
-                  src={thumb.src}
-                  alt=""
-                  width={120}
-                  height={120}
-                  className={styles.thumbImage}
-                  sizes="90px"
-                />
-              </button>
-            ))}
-          </div>
-        ) : null}
+
       </dialog>
     </div>
   );
