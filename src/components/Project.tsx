@@ -1,9 +1,8 @@
 import styles from './Project.module.css';
 import Image from 'next/image';
-import ArrowIcon from './ArrowIcon';
 import LinkComp from './LinkComp';
 
-import type { ProjectHomeCard } from '@/sanity/projects';
+import type { ProjectGridCard } from '@/sanity/projects';
 
 function projectMetaLabel(category: string): string {
     return category.split(',')[0].trim().toUpperCase();
@@ -14,39 +13,31 @@ export default function Project({
     category,
     title,
     year,
+    locationValue,
     imageSrc,
     imageAlt,
-    technicalParameters,
-}: ProjectHomeCard) {
+}: ProjectGridCard) {
     const metaLabel = projectMetaLabel(category);
 
     return (
         <LinkComp className={styles.projectLink} href={href}>
-            <div className={styles.row}>
+            <article className={styles.card}>
                 <div className={styles.imageWrapper}>
                     <Image
                         src={imageSrc}
                         alt={imageAlt}
                         width={640}
-                        height={480}
+                        height={640}
                         className={styles.image}
                     />
                 </div>
                 <div className={styles.content}>
-                    <div className={styles.contentHeader}>
-                        <h3 className={styles.title}>{title}</h3>
-                        <ArrowIcon className={styles.arrowIcon} />
-                    </div>
-                    {technicalParameters ? (
-                        <p className={styles.technicalParameters}>{technicalParameters}</p>
-                    ) : null}
-                    <p className={styles.meta}>
-                        <span className={styles.metaLabel}>{metaLabel}</span>
-                        <span className={styles.metaDate}>{year}</span>
-                    </p>
+                    <p className={styles.year}>{year}</p>
+                    <p className={styles.location}>{locationValue}</p>
+                    <p className={styles.category}>{metaLabel}</p>
+                    <h3 className={styles.title}>{title}</h3>
                 </div>
-                
-            </div>
+            </article>
         </LinkComp>
     );
 }

@@ -12,15 +12,16 @@
 .dialog {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
-  max-width: 100vw;
-  max-height: 100vh;
+  max-width: 1440px;
+  max-height: 100%;
   margin: 0;
   border: none;
   background: transparent;
+  gap: 16px;
 }
 
 .srOnly {
@@ -90,21 +91,147 @@
   right: 24px;
 }
 
+.desktopImageWrap {
+  width: 100%;
+  max-width: 1440px;
+}
+
+.mobileImageTrack {
+  display: none;
+}
+
+.mobileGallery {
+  display: none;
+}
+
 .image {
-  width: auto;
+  width: 100%;
+  max-width: 1440px;
   height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  max-height: calc(100vh - 140px);
   object-fit: contain;
+}
+
+.thumbTrack {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  width: 100%;
+  max-width: 1440px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.thumbTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbButton {
+  flex: 0 0 auto;
+  width: 90px;
+  height: 90px;
+  padding: 0;
+  border: 2px solid transparent;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.thumbButtonActive {
+  opacity: 1;
+  border-color: #ffffff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .thumbButton:hover {
+    opacity: 0.85;
+  }
+
+  .thumbButtonActive:hover {
+    opacity: 1;
+  }
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 @media (max-width: 768px) {
   .backdrop {
-    padding: 16px;
+    padding: 16px 0;
   }
 
   .closeButton {
     top: 16px;
     right: 16px;
+  }
+
+  .navButton {
+    display: none;
+  }
+
+  .dialog {
+    gap: 0;
+  }
+
+  .desktopImageWrap {
+    display: none;
+  }
+
+  .mobileGallery {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .mobileImageTrack {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 12px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .mobileImageTrack::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobileImageSlide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .mobileImage {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 72px);
+    object-fit: contain;
+  }
+
+  .mobileIndex {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-onest), sans-serif;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    opacity: 0.75;
+  }
+
+  .thumbTrack {
+    display: none;
   }
 }

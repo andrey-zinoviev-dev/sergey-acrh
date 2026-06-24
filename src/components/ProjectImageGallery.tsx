@@ -13,7 +13,6 @@ type ProjectImageGalleryProps = {
 export default function ProjectImageGallery({ images }: ProjectImageGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const isModalOpen = activeIndex !== null;
-  const modalImage = activeIndex !== null ? images[activeIndex] : null;
   const cover = images[0];
 
   if (!cover) {
@@ -22,15 +21,22 @@ export default function ProjectImageGallery({ images }: ProjectImageGalleryProps
 
   return (
     <>
-      <Image
-        src={cover.src}
-        alt={cover.alt}
-        width={1600}
-        height={669}
-        className={styles.coverImage}
-        priority
-        sizes="(max-width: 1200px) 100vw, 1200px"
-      />
+      <button
+        type="button"
+        className={styles.coverButton}
+        aria-label="Открыть изображение проекта"
+        onClick={() => setActiveIndex(0)}
+      >
+        <Image
+          src={cover.src}
+          alt={cover.alt}
+          width={1600}
+          height={669}
+          className={styles.coverImage}
+          priority
+          sizes="(max-width: 1200px) 100vw, 1200px"
+        />
+      </button>
 
       {images.length > 1 ? (
         <div
@@ -78,7 +84,7 @@ export default function ProjectImageGallery({ images }: ProjectImageGalleryProps
               src={image.src}
               alt={image.alt}
               width={800}
-              height={450}
+              height={800}
               className={styles.mobileGalleryImage}
               priority={index === 0}
               sizes="85vw"
@@ -88,19 +94,11 @@ export default function ProjectImageGallery({ images }: ProjectImageGalleryProps
       </div>
 
       <ImageModal
-        image={modalImage}
+        images={images}
+        activeIndex={activeIndex ?? 0}
         isOpen={isModalOpen}
         onClose={() => setActiveIndex(null)}
-        onPrev={() =>
-          setActiveIndex((index) => (index !== null && index > 0 ? index - 1 : index))
-        }
-        onNext={() =>
-          setActiveIndex((index) =>
-            index !== null && index < images.length - 1 ? index + 1 : index,
-          )
-        }
-        hasPrev={activeIndex !== null && activeIndex > 0}
-        hasNext={activeIndex !== null && activeIndex < images.length - 1}
+        onSelect={setActiveIndex}
       />
     </>
   );

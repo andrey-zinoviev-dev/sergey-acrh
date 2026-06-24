@@ -4,7 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Headline from "@/components/Headline";
 import Container from "@/components/Container";
 import ProjectsFilters from "@/components/ProjectsFilters";
-import { getProjects } from "@/sanity/projects";
+import { getProjectsGrid } from "@/sanity/projects";
 
 import styles from "./projects.module.css";
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsPage() {
-  const projects = await getProjects();
+  const projects = await getProjectsGrid();
 
   return (
     <div className={styles.page}>

@@ -4,9 +4,8 @@ import { sanityClient } from './client';
 import { urlFor } from './image';
 import {
   PROJECT_BY_SLUG_QUERY,
-  PROJECTS_HOME_QUERY,
-  PROJECTS_LIST_QUERY,
-  PROJECT_SLUGS_QUERY,
+  PROJECTS_GRID_QUERY,
+  PROJECTS_HOME_LIST_QUERY,
 } from './queries';
 
 type SanityImage = {
@@ -35,7 +34,8 @@ type SanityProjectHome = {
   title: string;
   category: string;
   year: string;
-  technicalParameters?: string;
+  locationValue: string;
+  description?: string;
   coverImage?: SanityImage;
 };
 
@@ -108,16 +108,14 @@ function defaultTechnicalParameters(doc: SanityProjectDetail): string {
   return `Объём сопоставим с полным циклом проектирования для объекта данного класса: от аналитики площадки до рабочей документации по архитектуре. Нормативная база — действующие стандарты и требования площадки в ${doc.locationValue}; при необходимости — BIM-сопровождение и спецификации узлов.`;
 }
 
-export async function getProjects() {
-  const docs = await sanityClient.fetch<
-    Array<{
-      title: string;
-      slug?: string;
-      locationValue: string;
-      filterCategory: string;
-    }>
-  >(PROJECTS_LIST_QUERY);
-
+function mapProjectListRows(
+  docs: Array<{
+    title: string;
+    slug?: string;
+    locationValue: string;
+    filterCategory: string;
+  }>,
+) {
   return docs
     .filter((doc) => doc.slug)
     .map((doc) => {
@@ -132,8 +130,10 @@ export async function getProjects() {
     });
 }
 
-export async function getHomeProjects() {
-  const docs = await sanityClient.fetch<SanityProjectHome[]>(PROJECTS_HOME_QUERY);
+export async function getProjectsGrid() {
+  const docs = await sanityClient.fetch<
+    Array<SanityProjectHome & { filterCategory: string }>
+  >(PROJECTS_GRID_QUERY);
 
   return docs.flatMap((doc) => {
     if (!doc.slug) return [];
@@ -144,20 +144,35 @@ export async function getHomeProjects() {
     const slug = normalizeSlug(doc.slug);
     return [
       {
+        slug,
         href: `/projects/${slug}`,
         title: doc.title,
         category: doc.category,
+        filterCategory: doc.filterCategory,
         year: doc.year,
+        locationValue: doc.locationValue,
         imageSrc: coverImage.src,
         imageAlt: coverImage.alt,
-        technicalParameters: doc.technicalParameters,
       },
     ];
   });
 }
 
+export async function getHomeProjectsList() {
+  const docs = await sanityClient.fetch<
+    Array<{
+      title: string;
+      slug?: string;
+      locationValue: string;
+      filterCategory: string;
+    }>
+  >(PROJECTS_HOME_LIST_QUERY);
+
+  return mapProjectListRows(docs);
+}
+
 export async function getAllProjectSlugs(): Promise<string[]> {
-  const docs = await sanityClient.fetch<Array<{ slug?: string }>>(PROJECT_SLUGS_QUERY);
+  const docs = await sanityClient.fetch<Array<{ slug?: string }>>(PROJECTS_GRID_QUERY);
   return docs
     .map((doc) => (doc.slug ? normalizeSlug(doc.slug) : null))
     .filter((slug): slug is string => Boolean(slug));
@@ -190,6 +205,6 @@ export async function getProjectDetail(slug: string) {
   };
 }
 
-export type ProjectListRow = Awaited<ReturnType<typeof getProjects>>[number];
-export type ProjectHomeCard = Awaited<ReturnType<typeof getHomeProjects>>[number];
+export type ProjectListRow = Awaited<ReturnType<typeof getHomeProjectsList>>[number];
+export type ProjectGridCard = Awaited<ReturnType<typeof getProjectsGrid>>[number];
 export type ProjectPage = NonNullable<Awaited<ReturnType<typeof getProjectDetail>>>;

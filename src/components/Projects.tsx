@@ -1,13 +1,13 @@
 import styles from './Projects.module.css';
-import Project from './Project';
 import Headline from './Headline';
 import ArrowIcon from './ArrowIcon';
 import Container from './Container';
 import LinkComp from './LinkComp';
-import { getHomeProjects } from '@/sanity/projects';
+import ProjectsTable from './ProjectsTable';
+import { getHomeProjectsList } from '@/sanity/projects';
 
 export default async function Projects() {
-    const projects = await getHomeProjects();
+    const projects = await getHomeProjectsList();
     return (
         <section className={styles.projects}>
             <Container className={styles.container}>
@@ -19,14 +19,7 @@ export default async function Projects() {
                         </p>
 
                     </div>
-                    <ul className={styles.projectsList}>
-                        {projects.map((project) => (
-                            <li className={styles.projectItem} key={project.href}>
-                                <Project {...project} />
-                            </li>
-                        ))}
-                        
-                    </ul>
+                    <ProjectsTable projects={projects} />
                     <LinkComp href="/projects">
                         <span>Посмотреть все проекты</span>
                         <ArrowIcon />

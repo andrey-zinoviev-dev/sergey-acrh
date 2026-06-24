@@ -1,3 +1,12 @@
+.coverButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 .coverImage {
   width: 100%;
   height: auto;
@@ -86,6 +95,6 @@
     height: auto;
     display: block;
     object-fit: cover;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1 / 1;
   }
 }
